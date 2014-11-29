@@ -35,9 +35,14 @@ public class Doctor extends SystemUser implements Serializable {
      The joinColumns element refers to the owning side (the Doctor)
      and the inverseJoinColumns refers to the inverse owning
      side (the Specialization)*/
-    @ManyToMany  @JoinTable(name = "jnd_doct_spec",joinColumns = @JoinColumn(name = "doctor_fk"),
+    @ManyToMany
+    @JoinTable(name = "jnd_doct_spec",joinColumns = @JoinColumn(name = "doctor_fk"),
     inverseJoinColumns = @JoinColumn(name = "specialization_fk"))  
-    private List<Specialization> specializaions; 
+    private List<Specialization> specializaions;   
+    @OneToMany
+    @JoinTable(name = "jnd_doct_medRec",joinColumns = @JoinColumn(name = "doct_fk"),
+    inverseJoinColumns = @JoinColumn(name = "medRec_fk") )
+    private List<MedicalRecord> medicalRecords;
     
 
     
@@ -67,6 +72,20 @@ public class Doctor extends SystemUser implements Serializable {
     /**
      * @return the specializations
      */
+    
+    /**
+     * @return the medicalRecords
+     */
+    public List<MedicalRecord> getMedicalRecords() {
+        return medicalRecords;
+    }
+
+    /**
+     * @param medicalRecords the medicalRecords to set
+     */
+    public void setMedicalRecords(List<MedicalRecord> medicalRecords) {
+        this.medicalRecords = medicalRecords;
+    }
     
 
     /**
@@ -107,6 +126,8 @@ public class Doctor extends SystemUser implements Serializable {
     public String toString() {
         return "edu.mum.ea.onlineDoctor.entity.Doctor[ id=" + id + " ]";
     }
+
+    
 
    
     
