@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,10 +39,9 @@ public class Doctor extends SystemUser implements Serializable {
     @ManyToMany
     @JoinTable(name = "jnd_doct_spec",joinColumns = @JoinColumn(name = "doctor_fk"),
     inverseJoinColumns = @JoinColumn(name = "specialization_fk"))  
-    private List<Specialization> specializaions;   
-    @OneToMany
-    @JoinTable(name = "jnd_doct_medRec",joinColumns = @JoinColumn(name = "doct_fk"),
-    inverseJoinColumns = @JoinColumn(name = "medRec_fk") )
+    private List<Specialization> specializaions;    
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "doctor_fk")
     private List<MedicalRecord> medicalRecords;
     
 
