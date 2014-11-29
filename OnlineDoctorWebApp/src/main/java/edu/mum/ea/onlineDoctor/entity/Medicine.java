@@ -6,10 +6,12 @@
 package edu.mum.ea.onlineDoctor.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -23,6 +25,9 @@ public class Medicine implements Serializable {
     private Long id;
     private int biologicalName;
 
+    @OneToMany(mappedBy="medicine")
+    private List<Remedy> prescribedTo;
+    
     public Long getId() {
         return id;
     }
@@ -44,6 +49,14 @@ public class Medicine implements Serializable {
 
     public void setBiologicalName(int biologicalName) {
         this.biologicalName = biologicalName;
+    }
+
+    public List<Remedy> getPrescribedTo() {
+        return prescribedTo;
+    }
+
+    public void setPrescribedTo(List<Remedy> prescribedTo) {
+        this.prescribedTo = prescribedTo;
     }
     
     

@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -25,6 +26,9 @@ public class Remedy implements Serializable {
     private String unit;
     private String medicineGuide;
 
+    @ManyToOne()
+    private Medicine medicine;
+    
     public Long getId() {
         return id;
     }
@@ -55,6 +59,14 @@ public class Remedy implements Serializable {
 
     public void setMedicineGuide(String medicineGuide) {
         this.medicineGuide = medicineGuide;
+    }
+
+    public Medicine getMedicine() {
+        return medicine;
+    }
+
+    public void setMedicine(Medicine medicine) {
+        this.medicine = medicine;
     }
     
     
