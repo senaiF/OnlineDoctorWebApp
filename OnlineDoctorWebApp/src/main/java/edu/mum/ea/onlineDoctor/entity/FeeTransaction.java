@@ -8,10 +8,15 @@ package edu.mum.ea.onlineDoctor.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -24,9 +29,26 @@ public class FeeTransaction implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Temporal(TemporalType.DATE)
     private Date paymentDate;
     
     private double paymentAmount;
+
+    public MedicalRecord getMedicalRecord() {
+        return medicalRecord;
+    }
+
+    public void setMedicalRecord(MedicalRecord medicalRecord) {
+        this.medicalRecord = medicalRecord;
+    }
+    
+ 
+    
+    
+    @OneToOne
+    @JoinColumn(name="medicalRecord_id")
+    private MedicalRecord medicalRecord;
+ 
     
     
     public Long getId() {

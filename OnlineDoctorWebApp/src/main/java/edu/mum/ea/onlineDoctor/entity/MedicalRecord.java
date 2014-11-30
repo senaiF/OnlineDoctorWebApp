@@ -8,10 +8,15 @@ package edu.mum.ea.onlineDoctor.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -24,11 +29,16 @@ public class MedicalRecord implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    @Temporal(TemporalType.DATE)
     private Date recordDate;
     
     private String symptoms;
     
     private String remarks;
+    
+    @OneToOne(mappedBy = "medicalRecord",cascade = CascadeType.ALL)
+    private FeeTransaction feeTransaction;
+       
     
     
     public Long getId() {
@@ -61,6 +71,14 @@ public class MedicalRecord implements Serializable {
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
+    }
+
+    public FeeTransaction getFeeTransaction() {
+        return feeTransaction;
+    }
+
+    public void setFeeTransaction(FeeTransaction feeTransaction) {
+        this.feeTransaction = feeTransaction;
     }
     
     
