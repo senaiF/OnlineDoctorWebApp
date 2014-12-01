@@ -14,6 +14,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -40,6 +43,9 @@ public class MedicalRecord implements Serializable {
     private FeeTransaction feeTransaction;
        
     
+    @ManyToOne
+    @JoinColumn(name="patient_ID")
+    private Patient patient;
     
     public Long getId() {
         return id;

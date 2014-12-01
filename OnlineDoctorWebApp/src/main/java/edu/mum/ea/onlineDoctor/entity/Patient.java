@@ -24,7 +24,7 @@ public class Patient extends SystemUser implements Serializable {
     private static final long serialVersionUID = 1L;
     @OneToMany(mappedBy = "patientInAppointment")
     private List<Appointment> appointments;
-    @OneToMany(mappedBy = "patientInMedicalRecord")
+    @OneToMany(mappedBy = "patient" )//patientInMedicalRecord")
     private List<MedicalRecord> medicalHistory;
 
     public List<Appointment> getAppoiintments() {

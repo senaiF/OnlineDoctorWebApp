@@ -6,6 +6,8 @@
 
 package edu.mum.ea.onlineDoctor.controller;
 
+import edu.mum.ea.onlineDoctor.entity.Patient;
+import edu.mum.ea.onlineDoctor.facade.PatientFacade;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -18,10 +20,37 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class PatientBean {
 
+   @EJB
+   private PatientFacade patientFacacde;
    
-   
+    private Patient patient = new Patient();
     
     public PatientBean() {
+    }
+
+    public PatientFacade getPatientFacacde() {
+        return patientFacacde;
+    }
+
+    public void setPatientFacacde(PatientFacade patientFacacde) {
+        this.patientFacacde = patientFacacde;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+    
+    
+    public String updatePatient()
+    {
+        
+        patientFacacde.edit(patient);
+        
+        return "patientInfoSuccess";
     }
     
 }
