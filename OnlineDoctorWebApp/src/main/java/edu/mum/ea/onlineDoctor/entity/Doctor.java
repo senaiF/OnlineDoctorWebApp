@@ -38,11 +38,13 @@ public class Doctor extends SystemUser implements Serializable {
      side (the Specialization)*/
     @ManyToMany
     @JoinTable(name = "jnd_doct_spec",joinColumns = @JoinColumn(name = "doctor_fk"),
-    inverseJoinColumns = @JoinColumn(name = "specialization_fk"))  
+    inverseJoinColumns = @JoinColumn(name = "specialization_ID"))  
     private List<Specialization> specializaions;    
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "doctor_fk")
     private List<MedicalRecord> medicalRecords;
+    @OneToMany(mappedBy = "doctorInAppointment")
+    private List<Appointment> appointments;
     
 
     

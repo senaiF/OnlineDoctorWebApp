@@ -6,53 +6,44 @@
 package edu.mum.ea.onlineDoctor.entity;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author Stella
  */
 @Entity
-public class Patient implements Serializable {
+public class Patient extends SystemUser implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @OneToMany(mappedBy = "patientInAppointment")
+    private List<Appointment> appointments;
+    @OneToMany(mappedBy = "patientInMedicalRecord")
+    private List<MedicalRecord> medicalHistory;
 
-    public Long getId() {
-        return id;
+    public List<Appointment> getAppoiintments() {
+        return appointments;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setAppoiintments(List<Appointment> appoiintments) {
+        this.appointments = appoiintments;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+    public List<MedicalRecord> getMedicalRecord() {
+        return medicalHistory;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Patient)) {
-            return false;
-        }
-        Patient other = (Patient) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "edu.mum.ea.onlineDoctor.entity.Patient[ id=" + id + " ]";
+    public void setMedicalRecord(List<MedicalRecord> medicalRecord) {
+        this.medicalHistory = medicalRecord;
     }
     
-}
+    
+   
+
+    }
