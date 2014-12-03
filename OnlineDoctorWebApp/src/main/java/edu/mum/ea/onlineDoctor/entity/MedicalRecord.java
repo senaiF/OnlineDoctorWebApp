@@ -47,6 +47,11 @@ public class MedicalRecord implements Serializable {
     @JoinColumn(name="patient_ID")
     private Patient patient;
     
+    @ManyToOne
+    @JoinColumn(name="doctor_id")
+    private Doctor doctor;
+    
+    
     public Long getId() {
         return id;
     }

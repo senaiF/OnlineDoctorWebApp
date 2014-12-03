@@ -28,7 +28,7 @@ public class Appointment implements Serializable {
     private Patient patientInAppointment;
     @ManyToOne
     @JoinColumn(name = "Doctor_ID")
-    private Doctor doctorInAppointment;
+    private Doctor doctor;
     private long startTime;
     private long endTime;
     
@@ -46,11 +46,11 @@ public class Appointment implements Serializable {
     }
 
     public Doctor getDoctorInAppointment() {
-        return doctorInAppointment;
+        return doctor;
     }
 
-    public void setDoctorInAppointment(Doctor doctorInAppointment) {
-        this.doctorInAppointment = doctorInAppointment;
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
     }
 
     public long getStartTime() {

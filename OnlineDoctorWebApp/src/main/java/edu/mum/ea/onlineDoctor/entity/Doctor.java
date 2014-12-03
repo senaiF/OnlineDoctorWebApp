@@ -9,6 +9,7 @@ package edu.mum.ea.onlineDoctor.entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -27,54 +28,24 @@ import javax.persistence.OneToMany;
 @Entity
 public class Doctor extends SystemUser implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String staffId;
+    
     /*the join table between Doctor and Specialization is renamed to JND_DOCT_SPEC 
      as well as each join column (thanks to the @JoinTable annotation).
      The joinColumns element refers to the owning side (the Doctor)
      and the inverseJoinColumns refers to the inverse owning
      side (the Specialization)*/
-    @ManyToMany
-    @JoinTable(name = "jnd_doct_spec",joinColumns = @JoinColumn(name = "doctor_fk"),
+     @ManyToMany
+    @JoinTable(name = "DoctorSpecializations",joinColumns = @JoinColumn(name = "doctor_ID"),
     inverseJoinColumns = @JoinColumn(name = "specialization_ID"))  
-    private List<Specialization> specializaions;    
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "doctor_fk")
-    private List<MedicalRecord> medicalRecords;
-    @OneToMany(mappedBy = "doctorInAppointment")
+    private List<Specialization> specializations;  
+     
+    @OneToMany(mappedBy="doctor")
+   private List<MedicalRecord> medicalRecords;
+    
+    @OneToMany(mappedBy = "doctor") //"doctorInAppointment")
     private List<Appointment> appointments;
     
-
-    
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-    
-     /**
-     * @return the staffId
-     */
-    public String getStaffId() {
-        return staffId;
-    }
-
-    /**
-     * @param staffId the staffId to set
-     */
-    public void setStaffId(String staffId) {
-        this.staffId = staffId;
-    }
-
-    /**
-     * @return the specializations
-     */
-    
+  
     /**
      * @return the medicalRecords
      */
@@ -89,36 +60,39 @@ public class Doctor extends SystemUser implements Serializable {
         this.medicalRecords = medicalRecords;
     }
     
-
-    /**
-     * @return the specializaions
-     */
-    public List<Specialization> getSpecializaions() {
-        return specializaions;
+    public List<Specialization> getSpecializations() {
+        return specializations;
     }
 
-    /**
-     * @param specializaions the specializaions to set
-     */
-    public void setSpecializaions(List<Specialization> specializaions) {
-        this.specializaions = specializaions;
+    public void setSpecializations(List<Specialization> specializations) {
+        this.specializations = specializations;
+    }
+
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
+
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments = appointments;
     }
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 7;
+        hash = 17 * hash + Objects.hashCode(this.specializations);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Doctor)) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        Doctor other = (Doctor) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Doctor other = (Doctor) obj;
+        if (!Objects.equals(this.specializations, other.specializations)) {
             return false;
         }
         return true;
@@ -126,11 +100,7 @@ public class Doctor extends SystemUser implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.mum.ea.onlineDoctor.entity.Doctor[ id=" + id + " ]";
+        return "Doctor{" + "specializations=" + specializations + '}';
     }
 
-    
-
-   
-    
 }
