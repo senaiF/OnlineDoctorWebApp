@@ -25,6 +25,7 @@ public class Specialization implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String specializationName;
+    private String discription;
     //inverse ManyToMany relationship annotation
      /*mappedBy tells the persistence provider
     that specialization is the name of the corresponding
@@ -86,6 +87,14 @@ public class Specialization implements Serializable {
 
     public void setSpecializationName(String specializationName) {
         this.specializationName = specializationName;
+    }
+
+    public String getDiscription() {
+        return discription;
+    }
+
+    public void setDiscription(String discription) {
+        this.discription = discription;
     }
 
     
