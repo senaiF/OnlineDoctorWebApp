@@ -10,6 +10,8 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,6 +34,8 @@ public abstract class SystemUser implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    public enum Gender{ Male, Female}
+    
     @Column( nullable = false)
     private String userName;
     @Column( nullable = false)
@@ -40,14 +44,18 @@ public abstract class SystemUser implements Serializable {
     private String firstName;
     @Column( nullable = false)
     private String lastName;
+    @Column(nullable=false)
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
     @Temporal(TemporalType.DATE)
     private Date dateofBirth;
 
     private String cellPhoneNo;
     private String homePhoneNo;
-    private String WorkPhoneNo;
-
+    private String workPhoneNo;
+    private String eMail;
+    
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
@@ -99,6 +107,14 @@ public abstract class SystemUser implements Serializable {
         this.dateofBirth = dateofBirth;
     }
 
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
     public String getCellPhoneNo() {
         return cellPhoneNo;
     }
@@ -116,12 +132,22 @@ public abstract class SystemUser implements Serializable {
     }
 
     public String getWorkPhoneNo() {
-        return WorkPhoneNo;
+        return workPhoneNo;
     }
 
-    public void setWorkPhoneNo(String WorkPhoneNo) {
-        this.WorkPhoneNo = WorkPhoneNo;
+    public void setWorkPhoneNo(String workPhoneNo) {
+        this.workPhoneNo = workPhoneNo;
     }
+
+    public String geteMail() {
+        return eMail;
+    }
+
+    public void seteMail(String eMail) {
+        this.eMail = eMail;
+    }
+
+    
 
     public Address getAddress() {
         return address;

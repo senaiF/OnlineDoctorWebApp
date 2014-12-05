@@ -23,8 +23,9 @@ public class Address implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String streetAddress;
+    private String street;
     private String city;
+    private String zipCode;
     private String state;
 
     public Long getId() {
@@ -35,13 +36,15 @@ public class Address implements Serializable {
         this.id = id;
     }
 
-    public String getStreetAddress() {
-        return streetAddress;
+    public String getStreet() {
+        return street;
     }
 
-    public void setStreetAddress(String streetAddress) {
-        this.streetAddress = streetAddress;
+    public void setStreet(String street) {
+        this.street = street;
     }
+
+  
 
     public String getCity() {
         return city;
@@ -49,6 +52,14 @@ public class Address implements Serializable {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 
     public String getState() {
