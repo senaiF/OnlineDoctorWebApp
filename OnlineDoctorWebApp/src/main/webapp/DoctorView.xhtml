@@ -11,39 +11,34 @@
     <h:body>
         
         //content begins here
-        <ui:define name="content"> 
-            <p:dataTable value="" var="datetime">
-                <p:column headerText="Id">                            
-                    <h:outputText style="width: 10em" value="" />
+        
+        <p:dataTable  var="doctor" value="#{DoctorView.doctors}">
+                <p:column headerText="First Name">                            
+                    <h:outputText style="width: 10em" value="#{doctor.firstName}" />
                 </p:column>                         
-                <p:column headerText="First Name">                                            
-                    <h:outputText value=""/>
-                </p:column>
-                <p:column headerText="First Name">                                            
-                    <h:outputText value=""/>
-                </p:column> 
                 <p:column headerText="Last Name">                                            
-                    <h:outputText value=""/>
+                    <h:outputText value="#{doctor.lastName}"/>
                 </p:column>
                 <p:column headerText="Date Of Birth">                                            
-                    <h:outputText value=""/>
+                    <h:outputText value="#{doctor.dateofBirth}"/>
+                </p:column> 
+                <p:column headerText="Cell Phone No">                                            
+                    <h:outputText value="#{doctor.cellPhoneNo}"/>
                 </p:column>
-                <p:column headerText="Cell Phone Number">                                            
-                    <h:outputText value=""/>
+                <p:column headerText="Home Phone No">                                            
+                    <h:outputText value="#{doctor.homePhoneNo}"/>
+                </p:column>
+                <p:column headerText="Work Phone No">                                            
+                    <h:outputText value="#{doctor.workPhoneNo}"/>
                 </p:column> 
-                <p:column headerText="Home Phone">                                            
-                    <h:outputText value=""/>
-                </p:column> 
-                <p:column headerText="Work Phone">                                            
-                    <h:outputText value=""/>
-                </p:column> 
+                               
                 <p:column headerText="Medical History">                         
                     <p:commandButton id="selectButton" update="" oncomplete="" icon="" title="Show Histor">  
-                        <f:setPropertyActionListener value="" target="" />  
+                        
                     </p:commandButton>                       
                 </p:column>  
             </p:dataTable>
-        </ui:define>
+       
         //content ends here
         
     </h:body>
