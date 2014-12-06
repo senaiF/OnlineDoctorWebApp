@@ -8,6 +8,8 @@ package edu.mum.ea.onlineDoctor.controller;
 
 import edu.mum.ea.onlineDoctor.entity.Patient;
 import edu.mum.ea.onlineDoctor.facade.PatientFacade;
+import java.io.Serializable;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -18,15 +20,24 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
-public class PatientBean {
+public class EditPatientBean implements Serializable {
 
    @EJB
    private PatientFacade patientFacacde;
-   
-    private Patient patient = new Patient();
     
-    public PatientBean() {
+    private Patient patient=new Patient() ;//(Patient)patientFacacde.find(3);
+    
+    public EditPatientBean() {
+       
+          
+        //   Patient patient2 =;
+       
     }
+@PostConstruct
+private void init(){
+    Long id= Long.valueOf(1);
+     patient=  patientFacacde.find(id);
+}
 
     public PatientFacade getPatientFacacde() {
         return patientFacacde;
@@ -47,9 +58,10 @@ public class PatientBean {
     
     public String updatePatient()
     {
-        
+     
+     
         patientFacacde.edit(patient);
-        
+       
         return "patientInfoSuccess";
     }
     

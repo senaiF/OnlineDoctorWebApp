@@ -18,6 +18,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 /**
  *
@@ -48,6 +49,12 @@ public abstract class SystemUser implements Serializable {
     private String homePhoneNo;
     private String WorkPhoneNo;
 
+    @Transient
+    private String confirmPassword;
+    
+    @Transient
+    private String newPassword;
+    
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
@@ -138,6 +145,24 @@ public abstract class SystemUser implements Serializable {
         return hash;
     }
 
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
+    }
+    
+    
+    
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
