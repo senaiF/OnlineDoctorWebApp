@@ -5,6 +5,7 @@
  */
 package edu.mum.ea.onlinedoctor;
 
+import static com.sun.javafx.application.PlatformImpl.startup;
 import edu.mum.ea.onlineDoctor.entity.Address;
 import edu.mum.ea.onlineDoctor.entity.Administrator;
 import edu.mum.ea.onlineDoctor.facade.AddressFacade;
@@ -14,18 +15,22 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.annotation.ManagedBean;
 import javax.ejb.EJB;
+import javax.ejb.Singleton;
+import javax.ejb.Startup;
+import javax.ejb.Stateless;
 import javax.enterprise.context.SessionScoped;
 
 /**
  *
  * @author Senai
  */
-@ManagedBean
-@SessionScoped
-public class DatabaseInitializer implements Serializable{
+
+@Singleton
+@Startup
+public class DatabaseInitializer implements Serializable {
 
     @EJB
-    private static AdministratorFacade adminFacade=new AdministratorFacade();
+    private static AdministratorFacade adminFacade;
     private static AddressFacade addressFacade;
 
     public static void main(String[] args) {

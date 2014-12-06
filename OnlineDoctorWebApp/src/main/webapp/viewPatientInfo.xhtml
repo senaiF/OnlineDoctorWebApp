@@ -14,11 +14,12 @@
                 <p:commandLink value="Edit my Personal Information" action="editPatientInfo"/>
                 <p:commandLink value="Change my password" action="changePassword"/>
                 <p:outputLabel value="First Name: "/>
+                <a href="editPatientInfo.xhtml"></a>
                 <p:outputLabel id="first" value="#{editPatientBean.patient.firstName}" />
                 <p:outputLabel value="First Name: "/>
                 <p:inplace id="basic">
-            <p:inputText value="Edit Me" />
-        </p:inplace>
+                    <p:inputText value="Edit Me" />
+                </p:inplace>
                 <p:outputLabel value="#{msgs.lastNameHeader}"/>
                 <p:outputLabel id="last" value="#{editPatientBean.patient.lastName}" />
 
@@ -27,7 +28,7 @@
                 <p:outputLabel id="homePhoneNo" value="#{editPatientBean.patient.homePhoneNo}" >
                     <f:convertNumber pattern="(##) ####-####"/>
                 </p:outputLabel>
-              <h:outputText value= "#{msgs.cellPhoneHeader}" />
+                <h:outputText value= "#{msgs.cellPhoneHeader}" />
 
                 <p:outputLabel id="cellPhoneNo" value="#{editPatientBean.patient.cellPhoneNo}" >
                     <f:convertNumber pattern="(##) ####-####"/>

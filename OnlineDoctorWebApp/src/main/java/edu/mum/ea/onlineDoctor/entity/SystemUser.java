@@ -55,8 +55,8 @@ public abstract class SystemUser implements Serializable {
     private String cellPhoneNo;
     private String homePhoneNo;
     private String workPhoneNo;
-    private String eMail;
-    private String WorkPhoneNo;
+    private String email;
+   
 
     @Transient
     private String confirmPassword;
@@ -147,13 +147,7 @@ public abstract class SystemUser implements Serializable {
         this.workPhoneNo = workPhoneNo;
     }
 
-    public String geteMail() {
-        return eMail;
-    }
 
-    public void seteMail(String eMail) {
-        this.eMail = eMail;
-    }
 
     
 
@@ -186,6 +180,14 @@ public abstract class SystemUser implements Serializable {
 
     public void setNewPassword(String newPassword) {
         this.newPassword = newPassword;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
     
     
