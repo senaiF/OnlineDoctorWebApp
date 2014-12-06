@@ -23,9 +23,11 @@ public class Address implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String streetAddress;
+    private String street;
     private String city;
     private String state;
+    private String zipCode;
+    
 
     public Long getId() {
         return id;
@@ -35,12 +37,20 @@ public class Address implements Serializable {
         this.id = id;
     }
 
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
     public String getStreetAddress() {
-        return streetAddress;
+        return street;
     }
 
     public void setStreetAddress(String streetAddress) {
-        this.streetAddress = streetAddress;
+        this.street = streetAddress;
     }
 
     public String getCity() {

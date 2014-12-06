@@ -11,21 +11,23 @@ import edu.mum.ea.onlineDoctor.facade.PatientFacade;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.inject.Named;
 
 /**
  *
  * @author Fetiya
  */
-@ManagedBean
+@Named(value = "patientBean")
 @SessionScoped
 public class PatientBean {
 
    @EJB
    private PatientFacade patientFacacde;
    
-    private Patient patient = new Patient();
+    private Patient patient;
     
     public PatientBean() {
+        this.patient=new Patient();
     }
 
     public PatientFacade getPatientFacacde() {
@@ -40,9 +42,10 @@ public class PatientBean {
         return patient;
     }
 
-    public void setPatient(Patient patient) {
-        this.patient = patient;
-    }
+//    public void setPatient(Patient patient) {
+//        this.patient = patient;
+//       
+//    }
     
     
     public String updatePatient()
