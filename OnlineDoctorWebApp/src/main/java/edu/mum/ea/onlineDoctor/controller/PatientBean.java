@@ -6,18 +6,16 @@
 
 package edu.mum.ea.onlineDoctor.controller;
 
+import edu.mum.ea.onlineDoctor.entity.Address;
 import edu.mum.ea.onlineDoctor.entity.Patient;
+import edu.mum.ea.onlineDoctor.facade.AddressFacade;
 import edu.mum.ea.onlineDoctor.facade.PatientFacade;
 import java.io.Serializable;
-import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.validator.ValidatorException;
+import javax.inject.Named;
 
 /**
  *
@@ -25,29 +23,28 @@ import javax.faces.validator.ValidatorException;
  */
 @ManagedBean
 @SessionScoped
-public class EditPatientBean implements Serializable {
+public class PatientBean implements Serializable{
+    @EJB
+    private AddressFacade addressFacade;
 
    @EJB
    private PatientFacade patientFacacde;
+   
+   
+    private Patient patient;
     
-    private Patient patient=new Patient() ;//(Patient)patientFacacde.find(3);
+    private Address address;
     
-    public EditPatientBean() {
-       
-          
-        //   Patient patient2 =;
-       
+    public PatientBean() {
+        
     }
-@PostConstruct
-private void init(){
-    Long id= Long.valueOf(1);
-     patient=  patientFacacde.find(id);
-     
-     System.out.println("Patient Name " + patient.getFirstName());
-     System.out.println("patient address street" + patient.getAddress().getStreet());
-     
-     
-}
+    
+    @PostConstruct
+    public void init()
+    {
+       this.patient=new Patient(); 
+       address= new Address();
+    }
 
     public PatientFacade getPatientFacacde() {
         return patientFacacde;
@@ -61,6 +58,10 @@ private void init(){
         return patient;
     }
 
+//    public void setPatient(Patient patient) {
+//        this.patient = patient;
+//       
+//    }
     public void setPatient(Patient patient) {
         this.patient = patient;
     }
@@ -70,26 +71,25 @@ private void init(){
     {
         
         patientFacacde.edit(patient);
-       
+        
         return "patientInfoSuccess";
     }
-     public void validateDateofBirth(FacesContext fc, UIComponent component, Object value) {
 
-        Date dateOfBirth = (Date) value;
-
-        if (dateOfBirth.after(new Date())) {
-            throw new ValidatorException(
-                    new FacesMessage("Date of Birth should be in the past"));
-
-        }
-
-        
+    public Address getAddress() {
+        return address;
     }
-     
-         public String savePatient(){
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+    
+    
+        public String addPatient(){
          System.out.println("pre save method");
-       this.patientFacacde.create(patient);
+          patient.setAddress(address);
+          patientFacacde.create(patient);
          System.out.println("post save method");
-       return "index";
+       return "patientInfoSuccess";
     }
+    
 }

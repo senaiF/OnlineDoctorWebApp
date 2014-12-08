@@ -27,6 +27,7 @@ public class Address implements Serializable {
     private String city;
     private String zipCode;
     private String state;
+  
 
     public Long getId() {
         return id;

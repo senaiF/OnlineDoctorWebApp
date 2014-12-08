@@ -146,9 +146,6 @@ public abstract class SystemUser implements Serializable {
     public void setWorkPhoneNo(String workPhoneNo) {
         this.workPhoneNo = workPhoneNo;
     }
-
-
-
     
 
     public Address getAddress() {
