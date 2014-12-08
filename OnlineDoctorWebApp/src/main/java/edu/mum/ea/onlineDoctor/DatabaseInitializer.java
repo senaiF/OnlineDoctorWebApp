@@ -5,7 +5,6 @@
  */
 package edu.mum.ea.onlinedoctor;
 
-import static com.sun.javafx.application.PlatformImpl.startup;
 import edu.mum.ea.onlineDoctor.entity.Address;
 import edu.mum.ea.onlineDoctor.entity.Administrator;
 import edu.mum.ea.onlineDoctor.facade.AddressFacade;
@@ -14,31 +13,23 @@ import edu.mum.ea.onlineDoctor.facade.SystemUserFacade;
 import java.io.Serializable;
 import java.util.Date;
 import javax.annotation.ManagedBean;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.ejb.Singleton;
-import javax.ejb.Startup;
-import javax.ejb.Stateless;
 import javax.enterprise.context.SessionScoped;
 
 /**
  *
  * @author Senai
  */
-
-@Singleton
-@Startup
-public class DatabaseInitializer {
+@ManagedBean
+@SessionScoped
+public class DatabaseInitializer implements Serializable{
 
     @EJB
-    private static AdministratorFacade adminFacade;
+    private static AdministratorFacade adminFacade=new AdministratorFacade();
+    private static AddressFacade addressFacade;
 
-  //  private static AddressFacade addressFacade;
+    public static void main(String[] args) {
 
-   // public static void main(String[] args) {
-
-    @PostConstruct
-            public void init(){
         Administrator admin1 = new Administrator();
         admin1.setUserName("Admin");
         admin1.setUserPassword("admin");
@@ -49,12 +40,12 @@ public class DatabaseInitializer {
         admin1.setHomePhoneNo("001(641)546-2345");
         admin1.setWorkPhoneNo("001(641)893-2345");
 
-//        Address adminAddress = new Address();
-//        adminAddress.setStreet("4th street");
-//        adminAddress.setCity("Fairfield");
-//        adminAddress.setState("Iowa");
-//        adminAddress.setZipCode("55257");
-//        admin1.setAddress(adminAddress);
+        Address adminAddress = new Address();
+        adminAddress.setStreet("4th street");
+        adminAddress.setCity("Fairfield");
+        adminAddress.setState("Iowa");
+        adminAddress.setZipCode("55257");
+        admin1.setAddress(adminAddress);
 
         adminFacade.create(admin1);
 

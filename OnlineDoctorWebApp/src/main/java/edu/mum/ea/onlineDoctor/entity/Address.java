@@ -37,16 +37,19 @@ public class Address implements Serializable {
         this.id = id;
     }
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
     public String getStreet() {
         return street;
     }
-
+ 
     public void setStreet(String street) {
         this.street = street;
     }
 
   
-
     public String getCity() {
         return city;
     }

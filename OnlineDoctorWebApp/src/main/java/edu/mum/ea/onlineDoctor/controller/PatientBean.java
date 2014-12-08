@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package edu.mum.ea.onlineDoctor.controller;
 
 import edu.mum.ea.onlineDoctor.entity.Address;
@@ -21,29 +20,29 @@ import javax.inject.Named;
  *
  * @author Fetiya
  */
-@ManagedBean
+@Named(value = "patientBean")
 @SessionScoped
-public class PatientBean implements Serializable{
+public class PatientBean implements Serializable {
+
     @EJB
     private AddressFacade addressFacade;
 
-   @EJB
-   private PatientFacade patientFacacde;
-   
-   
-    private Patient patient;
-    
+    @EJB
+    private PatientFacade patientFacacde;
+
     private Address address;
-    
+
+    private Patient patient;
+
     public PatientBean() {
-        
+
     }
-    
+
     @PostConstruct
-    public void init()
-    {
-       this.patient=new Patient(); 
-       address= new Address();
+    public void init() {
+        this.patient = new Patient();
+        address = new Address();
+
     }
 
     public PatientFacade getPatientFacacde() {
@@ -65,13 +64,11 @@ public class PatientBean implements Serializable{
     public void setPatient(Patient patient) {
         this.patient = patient;
     }
-    
-    
-    public String updatePatient()
-    {
-        
+
+    public String updatePatient() {
+
         patientFacacde.edit(patient);
-        
+
         return "patientInfoSuccess";
     }
 
@@ -82,14 +79,13 @@ public class PatientBean implements Serializable{
     public void setAddress(Address address) {
         this.address = address;
     }
-    
-    
-        public String addPatient(){
-         System.out.println("pre save method");
-          patient.setAddress(address);
-          patientFacacde.create(patient);
-         System.out.println("post save method");
-       return "patientInfoSuccess";
+
+    public String addPatient() {
+        System.out.println("pre save method");
+        patient.setAddress(address);
+        patientFacacde.create(patient);
+        System.out.println("post save method");
+        return "patientInfoSuccess";
     }
-    
+
 }

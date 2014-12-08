@@ -8,11 +8,9 @@ package edu.mum.ea.onlineDoctor.controller;
 import edu.mum.ea.onlineDoctor.entity.Address;
 import edu.mum.ea.onlineDoctor.entity.SystemUser;
 import edu.mum.ea.onlineDoctor.facade.SystemUserFacade;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.faces.application.ConfigurableNavigationHandler;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
 
@@ -20,6 +18,7 @@ import javax.faces.event.ComponentSystemEvent;
  *
  * @author Stella
  */
+
 @Stateless
 public class SystemUserBean {
 

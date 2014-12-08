@@ -146,7 +146,7 @@ public abstract class SystemUser implements Serializable {
     public void setWorkPhoneNo(String workPhoneNo) {
         this.workPhoneNo = workPhoneNo;
     }
-    
+  
 
     public Address getAddress() {
         return address;
@@ -156,6 +156,12 @@ public abstract class SystemUser implements Serializable {
         this.address = address;
     }
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;
