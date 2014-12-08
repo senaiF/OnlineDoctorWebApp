@@ -148,6 +148,16 @@ public abstract class SystemUser implements Serializable {
     }
   
 
+    public String geteMail() {
+        return eMail;
+    }
+
+    public void seteMail(String eMail) {
+        this.eMail = eMail;
+    }
+
+    
+
     public Address getAddress() {
         return address;
     }
