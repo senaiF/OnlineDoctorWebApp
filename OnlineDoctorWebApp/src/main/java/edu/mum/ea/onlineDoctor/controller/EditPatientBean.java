@@ -40,6 +40,8 @@ public class EditPatientBean implements Serializable {
     }
 @PostConstruct
 private void init(){
+    
+    //for test user 1  , hard coded to be replaced by logged in user
     Long id= Long.valueOf(1);
      patient=  patientFacacde.find(id);
      

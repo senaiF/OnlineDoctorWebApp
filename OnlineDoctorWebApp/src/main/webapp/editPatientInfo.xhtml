@@ -10,12 +10,12 @@
     <h:body>
 
         <h:form  id="editPatientInfo">
-     
+
             <h:panelGrid columns="3" cellpadding="6">
                 <p:commandLink value="Change my password" action="changePassword"/> 
-            <p:commandLink value="Edit my address" action="editAddress"/>
-            <br/>
-            
+                <p:commandLink value="Edit my address" action="editAddress"/>
+                <br/>
+
                 <p:outputLabel value="First Name: "/>
 
                 <p:inplace id="basic">
@@ -81,7 +81,7 @@
                 </p:inplace>
                 <p:message for="email" id="emailError" style="color: red"/>
 
-    
+
                 <p:commandButton value="Save Changes" action="#{editPatientBean.updatePatient()}"/>
                 <p:commandButton value="Cancel" immediate="true"/>
 
