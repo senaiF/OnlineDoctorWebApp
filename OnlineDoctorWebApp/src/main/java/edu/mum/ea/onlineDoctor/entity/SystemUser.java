@@ -10,6 +10,8 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,6 +20,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 /**
  *
@@ -32,6 +35,8 @@ public abstract class SystemUser implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    public enum Gender{ Male, Female}
+    
     @Column( nullable = false)
     private String userName;
     @Column( nullable = false)
@@ -40,14 +45,25 @@ public abstract class SystemUser implements Serializable {
     private String firstName;
     @Column( nullable = false)
     private String lastName;
+    @Column(nullable=false)
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
     @Temporal(TemporalType.DATE)
     private Date dateofBirth;
 
     private String cellPhoneNo;
     private String homePhoneNo;
-    private String WorkPhoneNo;
+    private String workPhoneNo;
+    private String email;
+   
 
+    @Transient
+    private String confirmPassword;
+    
+    @Transient
+    private String newPassword;
+    
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
@@ -99,6 +115,14 @@ public abstract class SystemUser implements Serializable {
         this.dateofBirth = dateofBirth;
     }
 
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
     public String getCellPhoneNo() {
         return cellPhoneNo;
     }
@@ -116,12 +140,15 @@ public abstract class SystemUser implements Serializable {
     }
 
     public String getWorkPhoneNo() {
-        return WorkPhoneNo;
+        return workPhoneNo;
     }
 
-    public void setWorkPhoneNo(String WorkPhoneNo) {
-        this.WorkPhoneNo = WorkPhoneNo;
+    public void setWorkPhoneNo(String workPhoneNo) {
+        this.workPhoneNo = workPhoneNo;
     }
+  
+
+    
 
     public Address getAddress() {
         return address;
@@ -131,6 +158,12 @@ public abstract class SystemUser implements Serializable {
         this.address = address;
     }
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -138,6 +171,32 @@ public abstract class SystemUser implements Serializable {
         return hash;
     }
 
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    
+    
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set

@@ -23,7 +23,7 @@ public class Medicine implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private int biologicalName;
+    private String biologicalName;
 
     @OneToMany(mappedBy="medicine")
     private List<Remedy> prescribedTo;
@@ -43,11 +43,11 @@ public class Medicine implements Serializable {
         return hash;
     }
 
-    public int getBiologicalName() {
+    public String getBiologicalName() {
         return biologicalName;
     }
 
-    public void setBiologicalName(int biologicalName) {
+    public void setBiologicalName(String biologicalName) {
         this.biologicalName = biologicalName;
     }
 
