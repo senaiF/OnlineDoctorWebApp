@@ -10,7 +10,7 @@ package edu.mum.ea.onlineDoctor.controller;
 import edu.mum.ea.onlineDoctor.entity.Appointment;
 import edu.mum.ea.onlineDoctor.entity.Patient;
 import edu.mum.ea.onlineDoctor.facade.AppointmentFacade;
-import edu.mumea.onlineDoctor.service.AppointmentServiceBean;
+import edu.mum.ea.onlineDoctor.service.AppointmentServiceBean;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.text.DecimalFormat;

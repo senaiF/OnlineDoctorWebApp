@@ -9,6 +9,7 @@ import edu.mum.ea.onlineDoctor.entity.Address;
 import edu.mum.ea.onlineDoctor.entity.Patient;
 import edu.mum.ea.onlineDoctor.facade.AddressFacade;
 import edu.mum.ea.onlineDoctor.facade.PatientFacade;
+import edu.mum.ea.onlineDoctor.service.PatientServiceBean;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -24,11 +25,14 @@ import javax.inject.Named;
 @SessionScoped
 public class PatientBean implements Serializable {
 
+//    @EJB
+//    private AddressFacade addressFacade;
+//
+//    @EJB
+//    private PatientFacade patientFacacde;
+    
     @EJB
-    private AddressFacade addressFacade;
-
-    @EJB
-    private PatientFacade patientFacacde;
+    private PatientServiceBean patientService;
 
     private Address address;
 
@@ -44,14 +48,14 @@ public class PatientBean implements Serializable {
         address = new Address();
 
     }
-
-    public PatientFacade getPatientFacacde() {
-        return patientFacacde;
-    }
-
-    public void setPatientFacacde(PatientFacade patientFacacde) {
-        this.patientFacacde = patientFacacde;
-    }
+//
+//    public PatientFacade getPatientFacacde() {
+//        return patientFacacde;
+//    }
+//
+//    public void setPatientFacacde(PatientFacade patientFacacde) {
+//        this.patientFacacde = patientFacacde;
+//    }
 
     public Patient getPatient() {
         return patient;
@@ -67,7 +71,7 @@ public class PatientBean implements Serializable {
 
     public String updatePatient() {
 
-        patientFacacde.edit(patient);
+//        patientFacacde.edit(patient);
 
         return "patientInfoSuccess";
     }
@@ -81,10 +85,15 @@ public class PatientBean implements Serializable {
     }
 
     public String addPatient() {
-        System.out.println("pre save method");
+//        System.out.println("pre save method");
+//        patientFacacde.create(patient);
+        
+        
         patient.setAddress(address);
-        patientFacacde.create(patient);
-        System.out.println("post save method");
+        patientService.signupPatient(patient);
+        
+//        System.out.println("post save method");
+        
         return "patientInfoSuccess";
     }
 

@@ -6,7 +6,7 @@
 package edu.mum.ea.onlineDoctor.facade;
 
 import edu.mum.ea.onlineDoctor.entity.Appointment;
-import edu.mumea.onlineDoctor.service.AppointmentServiceBean;
+import edu.mum.ea.onlineDoctor.service.AppointmentServiceBean;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;

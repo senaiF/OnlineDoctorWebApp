@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.mum.ea.onlineDoctor.service;
+package edu.mum.ea.onlineDoctor.serviceI;
+
+import javax.ejb.Local;
 
 /**
  *
  * @author Senai
  */
-public class textChatBean {
+@Local
+public interface MedicalRecordingServiceBeanLocal {
     
 }

@@ -6,6 +6,7 @@
 package edu.mum.ea.onlineDoctor.entity;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -35,8 +36,8 @@ public abstract class AppUser implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "userphoto", columnDefinition = "longblob")
-    private byte[] userPhoto;
+    @Column(columnDefinition = "longblob")
+    private byte[] userPhoto=new byte[0];
 
     @Column(nullable = false)
     private String userName;
@@ -103,6 +104,14 @@ public abstract class AppUser implements Serializable {
         this.lastName = lastName;
     }
 
+    public byte[] getUserPhoto() {
+        return userPhoto;
+    }
+
+    public void setUserPhoto(byte[] userPhoto) {
+        this.userPhoto = userPhoto;
+    }
+
     public Date getDateofBirth() {
         return dateofBirth;
     }
@@ -110,6 +119,7 @@ public abstract class AppUser implements Serializable {
     public void setDateofBirth(Date dateofBirth) {
         this.dateofBirth = dateofBirth;
     }
+
 
     public Gender getGender() {
         return gender;

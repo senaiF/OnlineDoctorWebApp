@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.mum.ea.onlineDoctor.entity;
+package edu.mum.ea.onlineDoctor.service;
 
 /**
  *
  * @author Senai
  */
-public enum Gender {
-    MALE, FEMALE
+public class textChatServiceBean {
+    
 }
