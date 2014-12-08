@@ -6,12 +6,14 @@
 package edu.mum.ea.onlineDoctor.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -29,6 +31,9 @@ public class Appointment implements Serializable {
     @ManyToOne
     @JoinColumn(name = "Doctor_ID")
     private Doctor doctor;
+    
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date appointmentDate;
     private long startTime;
     private long endTime;
     
@@ -96,6 +101,20 @@ public class Appointment implements Serializable {
     @Override
     public String toString() {
         return "edu.mum.ea.onlineDoctor.entity.Appointment[ id=" + id + " ]";
+    }
+
+    /**
+     * @return the appointmentDate
+     */
+    public Date getAppointmentDate() {
+        return appointmentDate;
+    }
+
+    /**
+     * @param appointmentDate the appointmentDate to set
+     */
+    public void setAppointmentDate(Date appointmentDate) {
+        this.appointmentDate = appointmentDate;
     }
     
 }

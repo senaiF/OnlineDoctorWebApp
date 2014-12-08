@@ -34,7 +34,7 @@ public class Doctor extends AppUser implements Serializable {
      The joinColumns element refers to the owning side (the Doctor)
      and the inverseJoinColumns refers to the inverse owning
      side (the Specialization)*/
-     @ManyToMany
+    @ManyToMany
     @JoinTable(name = "DoctorSpecializations",joinColumns = @JoinColumn(name = "doctor_ID"),
     inverseJoinColumns = @JoinColumn(name = "specialization_ID"))  
     private List<Specialization> specializations;  

@@ -5,7 +5,11 @@
  */
 package edu.mum.ea.onlineDoctor.facade;
 
+import edu.mum.ea.onlineDoctor.entity.Appointment;
 import edu.mum.ea.onlineDoctor.entity.Patient;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -26,6 +30,16 @@ public class PatientFacade extends AbstractFacade<Patient> {
 
     public PatientFacade() {
         super(Patient.class);
+    }
+    
+    public ArrayList<Patient> loadPatient() {
+        ArrayList<Patient> patients = new ArrayList();
+         List results = (List) em.createQuery("SELECT * FROM Patient");
+         Iterator it = results.iterator();
+         while(it.hasNext()){
+             patients.add((Patient) it.next());
+         }         
+         return patients;
     }
     
 }

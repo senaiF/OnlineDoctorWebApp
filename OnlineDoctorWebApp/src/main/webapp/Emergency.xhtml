@@ -7,12 +7,18 @@
         <title>Emergency</title>
     </h:head>
     <h:body>
-        <p>Description:  </p>
-        <p:inputTextarea rows="10" cols="50" queryDelay="750" minQueryLength="4" /><br/>
+        <p>Chat Room  </p>
+        <p:outputPanel deferred="true" deferredMode="visible">
+            <p>Loaded after the panel becomes visible on page scroll.</p>
+            <p>Lorem ipsum dolor sit amet...</p>
+        </p:outputPanel>
+
         
-        
+        <p:inputTextarea rows="5" cols="50" queryDelay="750" minQueryLength="4" /><br/>
+
+
         <h:commandButton  style="margin-top:1em; margin-left:1em" class="btn btn-primary" value="Cancel" action="http://www.google.com" />
-        <h:commandButton  style="margin-top:1em; margin-left:1em" class="btn btn-primary" value="Connect" action="http://www.google.com" />
+        <h:commandButton  style="margin-top:1em; margin-left:1em" class="btn btn-primary" value="Send" action="http://www.google.com" />
     </h:body>
 </html>
 
