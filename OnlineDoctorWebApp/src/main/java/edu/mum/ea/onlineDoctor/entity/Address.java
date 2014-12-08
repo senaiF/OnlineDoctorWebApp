@@ -27,6 +27,7 @@ public class Address implements Serializable {
     private String city;
     private String zipCode;
     private String state;
+  
 
     public Long getId() {
         return id;
@@ -36,16 +37,21 @@ public class Address implements Serializable {
         this.id = id;
     }
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
     public String getStreet() {
         return street;
     }
-
+ 
     public void setStreet(String street) {
         this.street = street;
     }
 
   
 
+  
     public String getCity() {
         return city;
     }

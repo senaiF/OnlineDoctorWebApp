@@ -5,7 +5,9 @@
  */
 package edu.mum.ea.onlineDoctor.facade;
 
+import edu.mum.ea.onlineDoctor.entity.Address;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.persistence.EntityManager;
 
 /**
@@ -14,9 +16,14 @@ import javax.persistence.EntityManager;
  */
 public abstract class AbstractFacade<T> {
     private Class<T> entityClass;
+    @EJB
+    private SystemUserFacade systemUserFacade;
+    private Address address;
+    
 
     public AbstractFacade(Class<T> entityClass) {
         this.entityClass = entityClass;
+        this.address=new Address();
     }
 
     protected abstract EntityManager getEntityManager();

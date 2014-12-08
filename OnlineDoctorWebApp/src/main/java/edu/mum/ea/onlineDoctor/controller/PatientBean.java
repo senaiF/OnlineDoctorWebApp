@@ -3,29 +3,46 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package edu.mum.ea.onlineDoctor.controller;
 
+import edu.mum.ea.onlineDoctor.entity.Address;
 import edu.mum.ea.onlineDoctor.entity.Patient;
+import edu.mum.ea.onlineDoctor.facade.AddressFacade;
 import edu.mum.ea.onlineDoctor.facade.PatientFacade;
+import java.io.Serializable;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.inject.Named;
 
 /**
  *
  * @author Fetiya
  */
-@ManagedBean
+@Named(value = "patientBean")
 @SessionScoped
-public class PatientBean {
+public class PatientBean implements Serializable {
 
-   @EJB
-   private PatientFacade patientFacacde;
-   
-    private Patient patient = new Patient();
-    
+    @EJB
+    private AddressFacade addressFacade;
+
+    @EJB
+    private PatientFacade patientFacacde;
+
+    private Address address;
+
+    private Patient patient;
+
     public PatientBean() {
+
+    }
+
+    @PostConstruct
+    public void init() {
+        this.patient = new Patient();
+        address = new Address();
+
     }
 
     public PatientFacade getPatientFacacde() {
@@ -40,17 +57,35 @@ public class PatientBean {
         return patient;
     }
 
+//    public void setPatient(Patient patient) {
+//        this.patient = patient;
+//       
+//    }
     public void setPatient(Patient patient) {
         this.patient = patient;
     }
-    
-    
-    public String updatePatient()
-    {
-        
+
+    public String updatePatient() {
+
         patientFacacde.edit(patient);
-        
+
         return "patientInfoSuccess";
     }
-    
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public String addPatient() {
+        System.out.println("pre save method");
+        patient.setAddress(address);
+        patientFacacde.create(patient);
+        System.out.println("post save method");
+        return "patientInfoSuccess";
+    }
+
 }
