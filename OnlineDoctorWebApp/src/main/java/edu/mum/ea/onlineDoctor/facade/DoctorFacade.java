@@ -7,6 +7,7 @@
 package edu.mum.ea.onlineDoctor.facade;
 
 import edu.mum.ea.onlineDoctor.entity.Doctor;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,5 +29,16 @@ public class DoctorFacade extends AbstractFacade<Doctor> {
     public DoctorFacade() {
         super(Doctor.class);
     }
+    
+    
+    public List findPatient(String id) {
+    return em.createQuery(
+    "SELECT p FROM Patient p WHERE p.id LIKE :id")
+    .setParameter("id", id)
+    .setMaxResults(10)
+    .getResultList();
+    }
+    
+    
     
 }
