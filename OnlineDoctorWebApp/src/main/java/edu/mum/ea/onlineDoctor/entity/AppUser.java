@@ -20,6 +20,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Past;
 
 /**
  *
@@ -27,35 +28,38 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class SystemUser implements Serializable {
+public abstract class AppUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    public enum Gender{ Male, Female}
-    
-    @Column( nullable = false)
+    @Column(name = "userphoto", columnDefinition = "longblob")
+    private byte[] userPhoto;
+
+    @Column(nullable = false)
     private String userName;
-    @Column( nullable = false)
+    @Column(nullable = false)
     private String userPassword;
-    @Column( nullable = false)
+    @Column(nullable = false)
     private String firstName;
-    @Column( nullable = false)
+    @Column(nullable = false)
     private String lastName;
-    @Column(nullable=false)
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
+    @Past
     @Temporal(TemporalType.DATE)
     private Date dateofBirth;
 
     private String cellPhoneNo;
     private String homePhoneNo;
     private String workPhoneNo;
+
     private String eMail;
-    
+
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
@@ -147,8 +151,6 @@ public abstract class SystemUser implements Serializable {
         this.eMail = eMail;
     }
 
-    
-
     public Address getAddress() {
         return address;
     }
@@ -167,10 +169,10 @@ public abstract class SystemUser implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof SystemUser)) {
+        if (!(object instanceof AppUser)) {
             return false;
         }
-        SystemUser other = (SystemUser) object;
+        AppUser other = (AppUser) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

@@ -5,7 +5,7 @@
  */
 package edu.mum.ea.onlineDoctor.facade;
 
-import edu.mum.ea.onlineDoctor.entity.SystemUser;
+import edu.mum.ea.onlineDoctor.entity.AppUser;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author Senai
  */
 @Stateless
-public class SystemUserFacade extends AbstractFacade<SystemUser> {
+public class SystemUserFacade extends AbstractFacade<AppUser> {
     @PersistenceContext(unitName = "edu.mum.ea_OnlineDoctorWebApp_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
@@ -25,7 +25,7 @@ public class SystemUserFacade extends AbstractFacade<SystemUser> {
     }
 
     public SystemUserFacade() {
-        super(SystemUser.class);
+        super(AppUser.class);
     }
     
 }
