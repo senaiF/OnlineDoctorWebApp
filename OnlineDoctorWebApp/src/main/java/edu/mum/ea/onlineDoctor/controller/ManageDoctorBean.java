@@ -25,7 +25,7 @@ import org.primefaces.event.SelectEvent;
  *
  * @author Brook B
  */
-@Named
+@ManagedBean
 @SessionScoped
 public class ManageDoctorBean implements Serializable {
 

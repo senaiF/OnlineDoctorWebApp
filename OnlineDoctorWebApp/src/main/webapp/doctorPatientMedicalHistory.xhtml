@@ -15,26 +15,26 @@
                 <p:accordionPanel multiple="true">
                     <p:tab title="Patient Info">
                         <h:panelGrid columns="6" cellpadding="10">
-                            <p:spacer></p:spacer> />
+                            <p:spacer></p:spacer> 
                             <p:spacer></p:spacer>
                             <h:outputLabel for="firstname" value="First Name :" />
-                            <h:outputText id="firstname" />
+                            <h:outputText id="firstname" value="#{patientBean.patient.firstName}"/>
                             <h:outputLabel for="lastname" value="Last Name :" />
-                            <h:outputText id="lastname" />
+                            <h:outputText id="lastname" value="#{patientBean.patient.firstName}"/>
 
                             <p:spacer></p:spacer>
                             <p:spacer></p:spacer>
                             <h:outputLabel for="dob" value="Date of Birth :" />
-                            <h:outputText id="dob" />
+                            <h:outputText id="dob" value="#{patientBean.patient.dateofBirth}"/>
                             <h:outputLabel for="gender" value="Gender :" />
-                            <h:outputText id="gender" />
+                            <h:outputText id="gender" value="#{patientBean.patient.gender}"/>
 
                             <p:spacer></p:spacer>
                             <p:spacer></p:spacer>
                             <h:outputLabel for="cellPhone" value="Cell Phone:" />
-                            <h:outputText id="cellPhone" />
+                            <h:outputText id="cellPhone" value="#{patientBean.patient.cellPhoneNo}"/>
                             <h:outputLabel for="email" value="Email:" />
-                            <h:outputText id="email" />
+                            <h:outputText id="email" value="#{patientBean.patient.email}"/>
 
                         </h:panelGrid>
                     </p:tab>

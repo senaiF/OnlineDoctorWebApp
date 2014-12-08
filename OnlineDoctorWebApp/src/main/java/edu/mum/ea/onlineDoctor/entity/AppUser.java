@@ -58,7 +58,7 @@ public abstract class AppUser implements Serializable {
     private String homePhoneNo;
     private String workPhoneNo;
 
-    private String eMail;
+    private String email;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
@@ -143,12 +143,12 @@ public abstract class AppUser implements Serializable {
         this.workPhoneNo = workPhoneNo;
     }
 
-    public String geteMail() {
-        return eMail;
+    public String getEmail() {
+        return email;
     }
 
-    public void seteMail(String eMail) {
-        this.eMail = eMail;
+    public void setEmail(String eMail) {
+        this.email = email;
     }
 
     public Address getAddress() {
