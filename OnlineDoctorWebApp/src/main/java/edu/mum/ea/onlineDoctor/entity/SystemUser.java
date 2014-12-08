@@ -20,6 +20,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 /**
  *
@@ -54,7 +55,14 @@ public abstract class SystemUser implements Serializable {
     private String cellPhoneNo;
     private String homePhoneNo;
     private String workPhoneNo;
-    private String eMail;
+    private String email;
+   
+
+    @Transient
+    private String confirmPassword;
+    
+    @Transient
+    private String newPassword;
     
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
@@ -138,14 +146,7 @@ public abstract class SystemUser implements Serializable {
     public void setWorkPhoneNo(String workPhoneNo) {
         this.workPhoneNo = workPhoneNo;
     }
-
-    public String geteMail() {
-        return eMail;
-    }
-
-    public void seteMail(String eMail) {
-        this.eMail = eMail;
-    }
+  
 
     
 
@@ -157,6 +158,12 @@ public abstract class SystemUser implements Serializable {
         this.address = address;
     }
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -164,6 +171,32 @@ public abstract class SystemUser implements Serializable {
         return hash;
     }
 
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    
+    
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set

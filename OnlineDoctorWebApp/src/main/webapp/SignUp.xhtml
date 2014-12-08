@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h1> Sign Up page </h1><br/>
+        <h:form>
+            <p:outputLabel for="button" value="First Name:" /><br/>
+            <p:inputText id="firstName" value="#{patientBean.patient.firstName}" /><br/>  
+            <p:outputLabel for="button" value="Last Name:" /><br/> 
+            <p:inputText id="lastName" value="#{patientBean.patient.lastName}"/><br/>
+            <p:outputLabel for="button" value="Date Of Birth:" /><br/> 
+            <p:calendar id="button" value="#{patientBean.patient.dateofBirth}" showOn="button" navigator="true" yearRange="c-70:c+10" locale="it">
+                  <f:convertDateTime  pattern="dd/MM/yyyy" /></p:calendar><br/>
+             <p:outputLabel for="button" value="Address" /><br/>
+             <p:outputLabel for="button" value="Street:" /><br/>
+             <p:inputText id="Street" value="#{patientBean.patient.address.street}"/><br/>
+             <p:outputLabel for="button" value="City:"/><br/>
+             <p:inputText id="city" value="#{patientBean.patient.address.city}"/><br/>
+             <p:outputLabel for="button" value="State:" /><br/>
+             <p:inputText id="state" value="#{patientBean.patient.address.state}"/><br/>
+             <p:outputLabel for="button" value="Zip Code:" /><br/>
+             <p:inputText id="zipCode" value="#{patientBean.patient.address.zipCode}"/><br/>
+              <p:outputLabel for="button" value="Country:" /><br/>
+             <p:inputText id="country" value="#{patientBean.patient.address}"/><br/>
+             
+            Cell Phone:<p:inputText id="cellPhone" value="#{patientManagedBean.patient.cellphone}" /><br/>
+            User Name:<p:inputText id="userName" value="#{patientManagedBean.patient.userName}"/><br/>
+            Password:<p:password id="password" value="#{patientManagedBean.patient.password}" /><br/>
+            <p:commandButton id="submitButton" action="#{patientManagedBean.postMessage()}" value="Sign Up"/>
+            
+<!--            test <p:calendar  size="12" value="#{myBean.myDate}" validator="#{myBean.validateMyDate}" id="myDate" navigator="true" yearRange="c-70:c+10" locale="it">
+                <f:convertDateTime  pattern="dd/MM/yyyy" /></p:calendar>-->
+
+            
+        </h:form>
+    </h:body>
+</html>
+

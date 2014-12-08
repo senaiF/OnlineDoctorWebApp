@@ -95,7 +95,7 @@ public class ManageDoctorBean implements Serializable {
     public String addDoctor(){
         System.out.println("action methodddddddddddddddddddddddddd");
         doctorFacacde.create(selectedoctor);
-                System.out.println("end            ction methodddddddddddddddddddddddddd");
+                System.out.println("enction methodddddddddddddddddddddddddd");
                 
                 return "addDoctorSuccess";
     } 
