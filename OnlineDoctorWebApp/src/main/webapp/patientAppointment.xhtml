@@ -18,15 +18,8 @@
     <h:body>     
         <h:form>
             <h:panelGrid columns="2">                      
-                <p:outputLabel for="date" value="Make Appointment" /><br/>
-                <p:outputLabel for="date" value="Date:" />
-                <p:calendar id="date" value="#{makeAppointmentBn.date}">
-                    <f:ajax event="dateSelect" render="time" listener= "#{makeAppointmentBn.fillTimes}"/>                            
-                </p:calendar>
-                <p:outputLabel for="time" value="Appointment Time:"/>
-                <h:selectOneMenu id="time" value="#{makeAppointmentBn.time}" required="true" > 
-                    <f:selectItems value="#{makeAppointmentBn.startTimes}" />                
-                </h:selectOneMenu>                        
+                <p:outputLabel value="Make Appointment" /><br/>                              
+                <p:calendar value="#{calendarBean.date1}" pattern="MM/dd/yyyy HH:mm" />                             
                 <h:outputText />
                 <h:panelGroup >
                     <h:commandButton style="margin-top:1em" class="btn btn-primary" value="Make Appointment" action="#{makeAppointmentBn.schedule}" />
