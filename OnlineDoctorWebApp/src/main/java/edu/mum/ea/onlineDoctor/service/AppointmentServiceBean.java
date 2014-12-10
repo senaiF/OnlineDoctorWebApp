@@ -7,34 +7,47 @@
 package edu.mum.ea.onlineDoctor.service;
 
 import edu.mum.ea.onlineDoctor.entity.Appointment;
+import edu.mum.ea.onlineDoctor.entity.Patient;
 import edu.mum.ea.onlineDoctor.facade.AppointmentFacade;
+import edu.mum.ea.onlineDoctor.facade.PatientFacade;
+import edu.mum.ea.onlineDoctor.serviceI.AppointmentServiceBeanLocal;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 /**
  *
- * @author HailelulLakew
+ * @author Fetiya
  */
 @Stateless
-public class AppointmentServiceBean {
-    @EJB 
- private AppointmentFacade appointmentFacade;
-    
-   public void create(Appointment entity) {
-       appointmentFacade.create(entity);
-    } 
+public class AppointmentServiceBean implements AppointmentServiceBeanLocal {
 
-    /**
-     * @return the appointmentFacade
-     */
-    public AppointmentFacade getAppointmentFacade() {
-        return appointmentFacade;
+    
+    @EJB
+    private AppointmentFacade appointmentFacacde;
+
+    
+    @Override
+    public String createAppointment(Appointment appointment) {
+
+        appointmentFacacde.create(appointment);
+        
+        return "";
+    }
+    @Override
+    public List<Appointment> findAllAppointments() {
+     
+        List<Appointment> apps= appointmentFacacde.findAll();
+        
+        return apps;
     }
 
-    /**
-     * @param appointmentFacade the appointmentFacade to set
-     */
-    public void setAppointmentFacade(AppointmentFacade appointmentFacade) {
-        this.appointmentFacade = appointmentFacade;
+    // Add business logic below. (Right-click in editor and choose
+    // "Insert Code > Add Business Method")
+
+    @Override
+    public List<Appointment> findPatientAppointments(Patient patient) {
+       
+        return appointmentFacacde.findPatientAppointments(patient);
     }
 }

@@ -7,7 +7,7 @@ package edu.mum.ea.onlineDoctor.controller;
 
 import edu.mum.ea.onlineDoctor.entity.Address;
 import edu.mum.ea.onlineDoctor.entity.AppUser;
-import edu.mum.ea.onlineDoctor.facade.SystemUserFacade;
+import edu.mum.ea.onlineDoctor.facade.AppUserFacade;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.faces.application.ConfigurableNavigationHandler;
@@ -23,7 +23,7 @@ import javax.faces.event.ComponentSystemEvent;
 public class SystemUserBean {
 
     @EJB
-    private SystemUserFacade systemUserFacade;
+    private AppUserFacade systemUserFacade;
 
     private AppUser appUser;
 
@@ -31,11 +31,11 @@ public class SystemUserBean {
 //
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-    public SystemUserFacade getSystemUserFacade() {
+    public AppUserFacade getSystemUserFacade() {
         return systemUserFacade;
     }
 
-    public void setSystemUserFacade(SystemUserFacade systemUserFacade) {
+    public void setSystemUserFacade(AppUserFacade systemUserFacade) {
         this.systemUserFacade = systemUserFacade;
     }
 

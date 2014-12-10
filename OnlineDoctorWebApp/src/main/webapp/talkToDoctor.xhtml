@@ -33,10 +33,11 @@
 
             function connectToChatserver() {
                 //room = $('#chatroom option:selected').val();
-              //room= document.getElementById('chatForm:selectedDoctor').value; 
-               room=$('#chatForm\\:selectedDoctor').val();
-               ////$('chatForm:selectedDoctor').val(); //'#signup-form\\:email'
-                wsocket = new WebSocket(serviceLocation + room + $username.val());
+                //room= document.getElementById('chatForm:selectedDoctor').value; 
+                // room = $('#chatForm\\:selectedAppointment').val();
+                room = $('#chatForm\\:availableAppointments').val();
+                ////$('chatForm:selectedDoctor').val(); //'#signup-form\\:email'
+                wsocket = new WebSocket(serviceLocation + room);
                 wsocket.onmessage = onMessageReceived;
             }
 
@@ -49,7 +50,7 @@
             }
 
             $(document).ready(function() {
-                $username = $('#chatForm\\:username');
+                $username =$('#chatForm\\:username');
                 $message = $('#do-chat\\:message');//document.getElementById('do-chat:message').value;//
                 $chatWindow = $('#response');
                 $('.chat-wrapper').hide();
@@ -76,45 +77,49 @@
     </h:head>
 
     <h:body>
-   
-           <div class="container chat-signin">
+
+        <div class="container chat-signin">
             <h:form id="chatForm" class="form-signin">
-               
+
                 <h2 class="form-signin-heading">Chat sign in</h2>
-                <label for="username">Username</label>
+
                 <h:inputText   class="input-block-level"
-                        id="username"/>
-               
-                 <h:selectOneMenu id="availableDocs" value="#{userBean.selectedDoctorID}">
-                   <f:selectItems value="#{userBean.doctors}" var="user" itemValue="#{user.id}" itemLabel="#{user.firstName}" />
-                   <f:ajax event="change" render="selectedDoctor"  listener="#{userBean.getSelectedDoctorDetail}" /> 
+                               id="username" value="#{talkToDoctorBean.patient.userName}" />
+
+                <br/>
+                Select appointment
+                <h:selectOneMenu id="availableAppointments" value="#{talkToDoctorBean.selectedAppointmentID}">
+                    <f:selectItems value="#{talkToDoctorBean.appointments}" var="appointment" itemValue="#{appointment.id}" 
+                                   itemLabel="#{appointment.id} With Dr.#{appointment.doctorInAppointment.firstName} #{appointment.doctorInAppointment.lastName}
+                                   #{appointment.appointmentDate}" />
+                    <f:ajax event="change"   listener="#{talkToDoctorBean.getSelectedAppointmentDetail}" /> 
                 </h:selectOneMenu>
-                
-                
-                <h:inputText id="selectedDoctor" value="#{userBean.selectedDoctor.userName}" />
+
+
+                <!--<h:inputText id="selectedAppointment" value="#  talkToDoctorBean.selectedAppointmentID}" />-->
                 <h:commandButton class="btn btn-large btn-primary" type="submit" 
-                        id="enterRoom" value="Start" />
+                                 id="enterRoom" value="Start" />
             </h:form>
         </div>
         <!-- /container -->
 
         <div class="container chat-wrapper">
             <h:form id="do-chat">
-
+                Hi <h:outputLabel value="#{talkToDoctorBean.patient.firstName}" />
                 <h2 class="alert alert-success"></h2>
                 <fieldset style="width:500px">
-                <table id="response" class="table table-bordered"></table>
-                
+                    <table id="response" class="table table-bordered"></table>
+
                 </fieldset>
                 <fieldset style="width:500px">
                     <legend>Enter your message</legend>
                     <div class="controls">
                         <h:inputText  class="input-block-level"  id="message" style="width:300px"/>
-                      <br/>
-                      
+                        <br/>
+
                         <input type="submit" class="btn btn-large btn-block btn-primary"
                                value="Send message"  />
-                               
+
                         <button class="btn btn-large btn-block" type="button" id="leave-room">Leave
                             room</button>
                     </div>
