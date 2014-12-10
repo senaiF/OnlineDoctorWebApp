@@ -17,7 +17,7 @@ import javax.persistence.Id;
  * @author Senai
  */
 @Entity
-public class Administrator extends SystemUser implements Serializable {
+public class Administrator extends AppUser implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Override

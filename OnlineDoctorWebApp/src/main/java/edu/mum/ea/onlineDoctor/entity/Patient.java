@@ -20,7 +20,7 @@ import javax.persistence.OneToMany;
  * @author Stella
  */
 @Entity
-public class Patient extends SystemUser implements Serializable {
+public class Patient extends AppUser implements Serializable {
     private static final long serialVersionUID = 1L;
     @OneToMany(mappedBy = "patientInAppointment")
     private List<Appointment> appointments;

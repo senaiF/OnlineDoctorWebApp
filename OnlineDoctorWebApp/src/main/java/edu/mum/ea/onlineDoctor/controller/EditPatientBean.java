@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package edu.mum.ea.onlineDoctor.controller;
 
 import edu.mum.ea.onlineDoctor.entity.Patient;
@@ -27,29 +26,28 @@ import javax.faces.validator.ValidatorException;
 @SessionScoped
 public class EditPatientBean implements Serializable {
 
-   @EJB
-   private PatientFacade patientFacacde;
-    
-    private Patient patient=new Patient() ;//(Patient)patientFacacde.find(3);
-    
+    @EJB
+    private PatientFacade patientFacacde;
+
+    private Patient patient = new Patient();//(Patient)patientFacacde.find(3);
+    private String newPassword;
+
     public EditPatientBean() {
-       
-          
+
         //   Patient patient2 =;
-       
     }
-@PostConstruct
-private void init(){
-    
-    //for test user 1  , hard coded to be replaced by logged in user
-    Long id= Long.valueOf(1);
-     patient=  patientFacacde.find(id);
-     
-     System.out.println("Patient Name " + patient.getFirstName());
-     System.out.println("patient address street" + patient.getAddress().getStreet());
-     
-     
-}
+
+    @PostConstruct
+    private void init() {
+
+        //for test user 1  , hard coded to be replaced by logged in user
+        Long id = Long.valueOf(51);
+        patient = patientFacacde.find(id);
+
+//        System.out.println("Patient Name " + patient.getFirstName());
+//        System.out.println("patient address street" + patient.getAddress().getStreet());
+
+    }
 
     public PatientFacade getPatientFacacde() {
         return patientFacacde;
@@ -66,16 +64,23 @@ private void init(){
     public void setPatient(Patient patient) {
         this.patient = patient;
     }
-    
-    
-    public String updatePatient()
-    {
-        
+
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
+    }
+
+    public String updatePatient() {
+
         patientFacacde.edit(patient);
-       
+
         return "patientInfoSuccess";
     }
-     public void validateDateofBirth(FacesContext fc, UIComponent component, Object value) {
+
+    public void validateDateofBirth(FacesContext fc, UIComponent component, Object value) {
 
         Date dateOfBirth = (Date) value;
 
@@ -85,13 +90,12 @@ private void init(){
 
         }
 
-        
     }
-     
-         public String savePatient(){
-         System.out.println("pre save method");
-       this.patientFacacde.create(patient);
-         System.out.println("post save method");
-       return "index";
+
+    public String savePatient() {
+        System.out.println("pre save method");
+        this.patientFacacde.create(patient);
+        System.out.println("post save method");
+        return "index";
     }
 }

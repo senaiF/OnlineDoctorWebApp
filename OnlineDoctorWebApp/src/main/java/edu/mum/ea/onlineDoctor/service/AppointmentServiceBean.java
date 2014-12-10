@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package edu.mumea.onlineDoctor.service;
+package edu.mum.ea.onlineDoctor.service;
 
 import edu.mum.ea.onlineDoctor.entity.Appointment;
 import edu.mum.ea.onlineDoctor.facade.AppointmentFacade;

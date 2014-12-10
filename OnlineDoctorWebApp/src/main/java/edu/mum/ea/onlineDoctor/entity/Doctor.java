@@ -26,7 +26,7 @@ import javax.persistence.OneToMany;
  * @author HailelulLakew
  */
 @Entity
-public class Doctor extends SystemUser implements Serializable {
+public class Doctor extends AppUser implements Serializable {
     private static final long serialVersionUID = 1L;
     
     /*the join table between Doctor and Specialization is renamed to JND_DOCT_SPEC 

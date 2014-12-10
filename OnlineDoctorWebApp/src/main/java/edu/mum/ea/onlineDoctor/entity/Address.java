@@ -6,6 +6,7 @@
 package edu.mum.ea.onlineDoctor.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,6 +28,7 @@ public class Address implements Serializable {
     private String city;
     private String zipCode;
     private String state;
+    private String country;
   
 
     public Long getId() {
@@ -76,21 +78,51 @@ public class Address implements Serializable {
         this.state = state;
     }
 
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 7;
+        hash = 17 * hash + Objects.hashCode(this.id);
+        hash = 17 * hash + Objects.hashCode(this.street);
+        hash = 17 * hash + Objects.hashCode(this.city);
+        hash = 17 * hash + Objects.hashCode(this.zipCode);
+        hash = 17 * hash + Objects.hashCode(this.state);
+        hash = 17 * hash + Objects.hashCode(this.country);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Address)) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        Address other = (Address) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Address other = (Address) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.street, other.street)) {
+            return false;
+        }
+        if (!Objects.equals(this.city, other.city)) {
+            return false;
+        }
+        if (!Objects.equals(this.zipCode, other.zipCode)) {
+            return false;
+        }
+        if (!Objects.equals(this.state, other.state)) {
+            return false;
+        }
+        if (!Objects.equals(this.country, other.country)) {
             return false;
         }
         return true;
@@ -98,7 +130,8 @@ public class Address implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.mum.ea.onlineDoctor.entity.Address[ id=" + id + " ]";
+        return "Address{" + "id=" + id + ", street=" + street + ", city=" + city + ", zipCode=" + zipCode + ", state=" + state + ", country=" + country + '}';
     }
 
+    
 }

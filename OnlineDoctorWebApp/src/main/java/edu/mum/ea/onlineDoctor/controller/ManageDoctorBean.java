@@ -8,15 +8,16 @@ package edu.mum.ea.onlineDoctor.controller;
 import edu.mum.ea.onlineDoctor.entity.Doctor;
 import edu.mum.ea.onlineDoctor.facade.DoctorFacade;
 
-import javax.inject.Named;
+
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.List;
-import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.inject.Named;
 import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
@@ -39,9 +40,6 @@ public class ManageDoctorBean implements Serializable {
     public void init() {
         doctorList = doctorFacacde.findAll();
         selectedoctor=new Doctor();
-//        for(Doctor doc:doctorList){
-//            
-//        }
     }
 
     public void onDateSelect(SelectEvent event) {
@@ -97,6 +95,6 @@ public class ManageDoctorBean implements Serializable {
         doctorFacacde.create(selectedoctor);
                 System.out.println("enction methodddddddddddddddddddddddddd");
                 
-                return "addDoctorSuccess";
+                return "index";
     } 
 }

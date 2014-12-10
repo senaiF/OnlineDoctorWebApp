@@ -6,6 +6,7 @@
 package edu.mum.ea.onlineDoctor.entity;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -20,7 +21,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
+import javax.validation.constraints.Past;
 
 /**
  *
@@ -28,42 +29,38 @@ import javax.persistence.Transient;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class SystemUser implements Serializable {
+public abstract class AppUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    public enum Gender{ Male, Female}
-    
-    @Column( nullable = false)
+    @Column(columnDefinition = "longblob")
+    private byte[] userPhoto=new byte[0];
+
+    @Column(nullable = false)
     private String userName;
-    @Column( nullable = false)
+    @Column(nullable = false)
     private String userPassword;
-    @Column( nullable = false)
+    @Column(nullable = false)
     private String firstName;
-    @Column( nullable = false)
+    @Column(nullable = false)
     private String lastName;
-    @Column(nullable=false)
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
+    @Past
     @Temporal(TemporalType.DATE)
     private Date dateofBirth;
 
     private String cellPhoneNo;
     private String homePhoneNo;
     private String workPhoneNo;
-    private String email;
-   
 
-    @Transient
-    private String confirmPassword;
-    
-    @Transient
-    private String newPassword;
-    
+    private String email;
+
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
@@ -107,6 +104,14 @@ public abstract class SystemUser implements Serializable {
         this.lastName = lastName;
     }
 
+    public byte[] getUserPhoto() {
+        return userPhoto;
+    }
+
+    public void setUserPhoto(byte[] userPhoto) {
+        this.userPhoto = userPhoto;
+    }
+
     public Date getDateofBirth() {
         return dateofBirth;
     }
@@ -114,6 +119,7 @@ public abstract class SystemUser implements Serializable {
     public void setDateofBirth(Date dateofBirth) {
         this.dateofBirth = dateofBirth;
     }
+
 
     public Gender getGender() {
         return gender;
@@ -146,9 +152,14 @@ public abstract class SystemUser implements Serializable {
     public void setWorkPhoneNo(String workPhoneNo) {
         this.workPhoneNo = workPhoneNo;
     }
-  
 
-    
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String eMail) {
+        this.email = email;
+    }
 
     public Address getAddress() {
         return address;
@@ -158,12 +169,6 @@ public abstract class SystemUser implements Serializable {
         this.address = address;
     }
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
-    
-    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -171,39 +176,13 @@ public abstract class SystemUser implements Serializable {
         return hash;
     }
 
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
-
-    public String getNewPassword() {
-        return newPassword;
-    }
-
-    public void setNewPassword(String newPassword) {
-        this.newPassword = newPassword;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    
-    
-    
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof SystemUser)) {
+        if (!(object instanceof AppUser)) {
             return false;
         }
-        SystemUser other = (SystemUser) object;
+        AppUser other = (AppUser) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
