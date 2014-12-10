@@ -37,7 +37,7 @@
                 // room = $('#chatForm\\:selectedAppointment').val();
                 room = $('#chatForm\\:availableAppointments').val();
                 ////$('chatForm:selectedDoctor').val(); //'#signup-form\\:email'
-                wsocket = new WebSocket(serviceLocation + room);
+                wsocket = new WebSocket(serviceLocation + room + #{talkToDoctorBean.patient.userName});
                 wsocket.onmessage = onMessageReceived;
             }
 
@@ -59,7 +59,7 @@
                 $('#chatForm\\:enterRoom').click(function(evt) {
                     evt.preventDefault();
                     connectToChatserver();
-                    $('.chat-wrapper h2').text('Online Doctor : Live chat between ' + $username.val() + " and " + room);
+                    $('.chat-wrapper h2').text('Online Doctor : Live chat between ' + " and " + room);
                     $('.chat-signin').hide();
                     $('.chat-wrapper').show();
                     $message.focus();

@@ -54,8 +54,8 @@ public class TalkToDoctorBean {
        
         //get available patient's appointemnts
      
-        //appointments=appointmentService.findAllAppointments();//
-        appointments=appointmentService.findPatientAppointments(patient);
+        appointments=appointmentService.findAllAppointments();
+     //  appointments=appointmentService.findPatientAppointments(patient);
        
         selectedAppointment = new Appointment();
         
