@@ -17,7 +17,7 @@ import javax.persistence.EntityManager;
 public abstract class AbstractFacade<T> {
     private Class<T> entityClass;
     @EJB
-    private AppUserFacade systemUserFacade;
+    private SystemUserFacade systemUserFacade;
     private Address address;
     
 

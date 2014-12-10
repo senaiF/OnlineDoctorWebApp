@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author Senai
  */
 @Stateless
-public class AppUserFacade extends AbstractFacade<AppUser> {
+public class SystemUserFacade extends AbstractFacade<AppUser> {
     @PersistenceContext(unitName = "edu.mum.ea_OnlineDoctorWebApp_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
@@ -24,7 +24,7 @@ public class AppUserFacade extends AbstractFacade<AppUser> {
         return em;
     }
 
-    public AppUserFacade() {
+    public SystemUserFacade() {
         super(AppUser.class);
     }
     

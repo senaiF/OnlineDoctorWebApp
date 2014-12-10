@@ -7,7 +7,6 @@ package edu.mum.ea.onlineDoctor.entity;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -42,35 +41,6 @@ public class Patient extends AppUser implements Serializable {
 
     public void setMedicalRecord(List<MedicalRecord> medicalRecord) {
         this.medicalHistory = medicalRecord;
-    }
-
-    public Patient() {
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 37 * hash + Objects.hashCode(this.appointments);
-        hash = 37 * hash + Objects.hashCode(this.medicalHistory);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Patient other = (Patient) obj;
-        if (!Objects.equals(this.appointments, other.appointments)) {
-            return false;
-        }
-        if (!Objects.equals(this.medicalHistory, other.medicalHistory)) {
-            return false;
-        }
-        return true;
     }
     
     

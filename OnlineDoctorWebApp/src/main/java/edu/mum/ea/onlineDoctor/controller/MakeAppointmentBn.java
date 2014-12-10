@@ -121,7 +121,7 @@ public String schedule() throws SQLException {
 //        appointmentService.addAppointment();
         appointment.setId(null);
         //appointment.setAccountId(loginBn.getAccount().getId());
-        appointmentServiceBean.createAppointment(appointment);
+        appointmentServiceBean.create(appointment);
 
         fillTimes();
         return "appointmentConfirmation";                
