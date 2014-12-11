@@ -10,6 +10,7 @@ import edu.mum.ea.onlineDoctor.entity.Patient;
 import edu.mum.ea.onlineDoctor.facade.AddressFacade;
 import edu.mum.ea.onlineDoctor.facade.PatientFacade;
 import edu.mum.ea.onlineDoctor.service.PatientServiceBean;
+import edu.mum.ea.onlineDoctor.serviceI.PatientServiceBeanLocal;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -21,7 +22,7 @@ import javax.inject.Named;
  *
  * @author Fetiya
  */
-@ManagedBean
+@Named
 @SessionScoped
 public class PatientBean implements Serializable {
 
@@ -32,7 +33,7 @@ public class PatientBean implements Serializable {
 //    private PatientFacade patientFacacde;
     
     @EJB
-    private PatientServiceBean patientService;
+    private PatientServiceBeanLocal patientService;
 
     private Address address;
 
