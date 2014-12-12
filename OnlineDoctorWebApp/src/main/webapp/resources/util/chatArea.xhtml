@@ -5,9 +5,9 @@
       xmlns:p="http://primefaces.org/ui">
 
     <composite:interface>
-        <composite:attribute name="chatHistoryValue" />
-        <composite:attribute name="sendtextvalue"/>
-        <composite:attribute name="sendAction" />
+        <composite:attribute name="startChatButtonValue" default="Start" />
+        <composite:attribute name="stopChatButtonValue" default="Stop"/>
+        <composite:attribute name="sendButtonValue" default="Send"/>
         
     </composite:interface>
 
@@ -15,15 +15,16 @@
         <h:outputScript name="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/>
         <h:outputScript name="js/chatScript.js" />
         
-        <p:button id="chat-start" />
-        <div id="chat-wrapper" class="container chat-signin">
-            <h:form id="do-chat" class="form-chat">
-                <p:inputTextarea id="response" rows="6" cols="33" value="#{cc.attrs.chatHistoryValue}" readonly="true"/><br /><br />
-                <p:inputText id="message" value="#{cc.attrs.sendtextvalue}"/><br /><br />
-                <p:commandButton id="sendButton" />
-                <p:button id="leave-chat"/>
-                
-            </h:form>
+        <input type="button" id="chat-start"  value="#{cc.attrs.startChatButtonValue}" onclick="startChat();"  />
+        <input type="button" id="leave-chat" value="#{cc.attrs.stopChatButtonValue}" onclick="stopChat()" />
+        <div id="chat-wrapper"  class="chat-wrapper">
+            <h2 ></h2>
+            <!--<h:form id="do-chat" class="form-chat">-->
+                <textarea id="response" rows="20" cols="100" readonly="true"/><br /><br />
+                <textarea id="message" rows="3" cols="95"/>
+                <input type="button" value="#{cc.attrs.sendButtonValue}" onclick="sendMessage()"/>
+                                
+            <!--</h:form>-->
         </div>
     </composite:implementation>
 </html>

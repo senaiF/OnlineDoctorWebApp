@@ -13,6 +13,7 @@ import edu.mum.ea.onlineDoctor.service.PatientServiceBean;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Named;
@@ -21,8 +22,8 @@ import javax.inject.Named;
  *
  * @author Fetiya
  */
-@ManagedBean
-@SessionScoped
+@Named
+@RequestScoped
 public class PatientBean implements Serializable {
 
 //    @EJB
@@ -38,9 +39,7 @@ public class PatientBean implements Serializable {
 
     private Patient patient;
 
-    public PatientBean() {
-
-    }
+    
 
     @PostConstruct
     public void init() {
