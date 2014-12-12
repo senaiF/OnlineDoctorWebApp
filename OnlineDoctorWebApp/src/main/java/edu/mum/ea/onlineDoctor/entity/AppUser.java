@@ -8,6 +8,7 @@ package edu.mum.ea.onlineDoctor.entity;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +19,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,8 +33,8 @@ import javax.validation.constraints.Past;
  * @author Senai
  */
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class AppUser implements Serializable {
+@Inheritance(strategy = InheritanceType.JOINED)
+public class AppUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -39,10 +44,7 @@ public abstract class AppUser implements Serializable {
     @Column(columnDefinition = "longblob")
     private byte[] userPhoto=new byte[0];
 
-    @Column(nullable = false)
-    private String userName;
-    @Column(nullable = false)
-    private String userPassword;
+   
     @Column(nullable = false)
     private String firstName;
     @Column(nullable = false)
@@ -62,8 +64,12 @@ public abstract class AppUser implements Serializable {
     private String email;
 
     @OneToOne(cascade = CascadeType.ALL)
+    private Credential credential;
+    
+    @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
+    
     public Long getId() {
         return id;
     }
@@ -72,22 +78,7 @@ public abstract class AppUser implements Serializable {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getUserPassword() {
-        return userPassword;
-    }
-
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
-    }
-
+   
     public String getFirstName() {
         return firstName;
     }
@@ -161,6 +152,15 @@ public abstract class AppUser implements Serializable {
         this.email = email;
     }
 
+    public Credential getCredential() {
+        return credential;
+    }
+
+    public void setCredential(Credential credential) {
+        this.credential = credential;
+    }
+
+    
     public Address getAddress() {
         return address;
     }

@@ -6,6 +6,7 @@
 package edu.mum.ea.onlineDoctor.controller;
 
 import edu.mum.ea.onlineDoctor.entity.Address;
+import edu.mum.ea.onlineDoctor.entity.AppRole;
 import edu.mum.ea.onlineDoctor.entity.Patient;
 import edu.mum.ea.onlineDoctor.facade.AddressFacade;
 import edu.mum.ea.onlineDoctor.facade.PatientFacade;
@@ -38,6 +39,7 @@ public class PatientBean implements Serializable {
     private Address address;
 
     private Patient patient;
+    private AppRole role;
 
     public PatientBean() {
 
@@ -47,6 +49,8 @@ public class PatientBean implements Serializable {
     public void init() {
         this.patient = new Patient();
         address = new Address();
+        
+        
 
     }
 //

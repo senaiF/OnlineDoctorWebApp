@@ -52,8 +52,8 @@ public class AdministratorViewBean {
         patient.setCellPhoneNo("45238903456");        
         patient.setHomePhoneNo("623689999999");
         patient.setWorkPhoneNo("15634688888");
-        patient.setUserName("dfdfd");
-        patient.setUserPassword("fdff");
+//        patient.setUserName("dfdfd");
+//        patient.setPassword("fdff");
         //System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
         
         
