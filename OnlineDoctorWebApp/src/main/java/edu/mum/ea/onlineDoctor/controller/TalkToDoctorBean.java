@@ -9,13 +9,18 @@ import edu.mum.ea.onlineDoctor.entity.AppUser;
 import edu.mum.ea.onlineDoctor.entity.Appointment;
 import edu.mum.ea.onlineDoctor.entity.Patient;
 import edu.mum.ea.onlineDoctor.facade.AppointmentFacade;
+import edu.mum.ea.onlineDoctor.facade.PatientFacade;
 import edu.mum.ea.onlineDoctor.serviceI.AppointmentServiceBeanLocal;
 import edu.mum.ea.onlineDoctor.serviceI.PatientServiceBeanLocal;
+import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+
+
 import javax.inject.Named;
 
 /**
@@ -23,8 +28,8 @@ import javax.inject.Named;
  * @author Fetiya
  */
 @Named
-@SessionScoped
-public class TalkToDoctorBean {
+@RequestScoped
+public class TalkToDoctorBean implements Serializable{
 
     private Long selectedAppointmentID;
 
@@ -36,13 +41,14 @@ public class TalkToDoctorBean {
     private AppointmentServiceBeanLocal appointmentService;
 
     @EJB 
-    PatientServiceBeanLocal patientService;
+    private PatientServiceBeanLocal patientService;
+    
+
     
     private Patient patient;
     
     
-    public TalkToDoctorBean() {
-    }
+   
 
     @PostConstruct
     public void init() {
@@ -51,8 +57,8 @@ public class TalkToDoctorBean {
       //hard code: replace this with loggedin user later
         Long id=Long.valueOf(5);
         
-        patient=patientService.getPatientById(id);
-       
+        patient=patientService.getPatientById(id);//.find(id);//.find(id);//
+        System.out.println("Patient");
         //get available patient's appointemnts
      
       
@@ -88,10 +94,12 @@ public class TalkToDoctorBean {
         this.selectedAppointment = selectedAppointment;
     }
     
-    public void getAppointmentByID()
+    public void findAppointmentByID()
     {
         
-       selectedAppointment= appointmentService.findAppointmentByID(selectedAppointmentID);
+      selectedAppointment= appointmentService.findAppointmentByID(selectedAppointmentID);
+        
+      //  selectedAppointment=appointmentService.find(selectedAppointmentID);
     }
 
     public Patient getPatient() {
@@ -101,6 +109,9 @@ public class TalkToDoctorBean {
     public void setPatient(Patient patient) {
         this.patient = patient;
     }
+
+  
+   
     
 
 }

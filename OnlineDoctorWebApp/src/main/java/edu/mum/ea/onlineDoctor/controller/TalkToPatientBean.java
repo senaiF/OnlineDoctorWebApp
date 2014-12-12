@@ -9,12 +9,14 @@ import edu.mum.ea.onlineDoctor.entity.Appointment;
 import edu.mum.ea.onlineDoctor.entity.Doctor;
 import edu.mum.ea.onlineDoctor.serviceI.AppointmentServiceBeanLocal;
 import edu.mum.ea.onlineDoctor.serviceI.DoctorServiceBeanLocal;
+import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
+
 import javax.inject.Named;
 
 /**
@@ -22,8 +24,8 @@ import javax.inject.Named;
  * @author Fetiya
  */
 @Named
-@SessionScoped
-public class TalkToPatientBean {
+@RequestScoped
+public class TalkToPatientBean implements Serializable{
 
     private Long selectedAppointmentID;
 

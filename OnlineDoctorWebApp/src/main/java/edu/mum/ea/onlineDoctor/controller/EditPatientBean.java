@@ -41,7 +41,7 @@ public class EditPatientBean implements Serializable {
     private void init() {
 
         //for test user 1  , hard coded to be replaced by logged in user
-        Long id = Long.valueOf(51);
+        Long id = Long.valueOf(5);
         patient = patientFacacde.find(id);
 
 //        System.out.println("Patient Name " + patient.getFirstName());

@@ -28,8 +28,7 @@ import javax.persistence.Query;
 public class AppointmentFacade extends AbstractFacade<Appointment> {
     @PersistenceContext(unitName = "edu.mum.ea_OnlineDoctorWebApp_war_1.0-SNAPSHOTPU")
      private EntityManager em;
-    @EJB
-    AppointmentServiceBean appointmentServiceBean;
+   
 
     @Override
     protected EntityManager getEntityManager() {
@@ -54,7 +53,7 @@ public class AppointmentFacade extends AbstractFacade<Appointment> {
     
      public List<Appointment> findDoctorAppointments(Doctor doctor) {
 
-        Query query = em.createQuery("SELECT a FROM Appointment a WHERE a.doctor:doctor", Appointment.class);
+        Query query = em.createQuery("SELECT a FROM Appointment a WHERE a.doctor=:doctor", Appointment.class);
 
         List<Appointment> apps;
         query.setParameter("doctor", doctor);

@@ -32,10 +32,8 @@
             }
 
             function connectToChatserver() {
-                //room = $('#chatroom option:selected').val();
-                //room= document.getElementById('chatForm:selectedDoctor').value; 
-                // room = $('#chatForm\\:selectedAppointment').val();
-                room = $('#chatForm\\:availableAppointments').val() ;//+ '_#{talkToDoctorBean.selectedAppointment.patientInAppointment.userName}_#{talkToDoctorBean.selectedAppointment.doctor.userName}';
+          
+                room = $('#chatForm\\:availableAppointments').val() ;//+ '_# b{talkToDoctorBean.selectedAppointment.patientInAppointment.userName}_# {talkToDoctorBean.selectedAppointment.doctor.userName}';
                 
                 ////$('chatForm:selectedDoctor').val(); //'#signup-form\\:email'
                 wsocket = new WebSocket(serviceLocation + room);
@@ -90,7 +88,7 @@
                     <f:selectItems value="#{talkToDoctorBean.appointments}" var="appointment" itemValue="#{appointment.id}" 
                                    itemLabel="#{appointment.id} With Dr.#{appointment.doctorInAppointment.firstName} #{appointment.doctorInAppointment.lastName}
                                    #{appointment.appointmentDate}" />
-                    <f:ajax event="change"   listener="#{talkToDoctorBean.getAppointmentByID}" /> 
+                    <f:ajax event="change"   listener="#{talkToDoctorBean.findAppointmentByID}" /> 
                 </h:selectOneMenu>
 
 
