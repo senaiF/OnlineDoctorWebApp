@@ -3,17 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package edu.mum.ea.onlineDoctor.serviceI;
 
-import edu.mum.ea.onlineDoctor.entity.Doctor;
+import edu.mum.ea.onlineDoctor.entity.Patient;
 import javax.ejb.Local;
 
 /**
  *
- * @author Senai
+ * @author Fetiya
  */
 @Local
-public interface DoctorServiceBeanLocal {
-    
-    public Doctor getDoctorById(Long id);
+public interface PatientServiceBeanLocal {
+  
+    public String signupPatient(Patient newPatient);
+    public Patient getPatientById(Long id);
 }
