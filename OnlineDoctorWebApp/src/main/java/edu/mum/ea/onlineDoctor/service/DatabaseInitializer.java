@@ -8,11 +8,13 @@ package edu.mum.ea.onlineDoctor.service;
 import edu.mum.ea.onlineDoctor.serviceI.DatabaseInitializerLocal;
 import edu.mum.ea.onlineDoctor.entity.Address;
 import edu.mum.ea.onlineDoctor.entity.Administrator;
+import edu.mum.ea.onlineDoctor.entity.Appointment;
 import edu.mum.ea.onlineDoctor.entity.Doctor;
 import edu.mum.ea.onlineDoctor.entity.Gender;
 import edu.mum.ea.onlineDoctor.entity.Patient;
 import edu.mum.ea.onlineDoctor.facade.AddressFacade;
 import edu.mum.ea.onlineDoctor.facade.AdministratorFacade;
+import edu.mum.ea.onlineDoctor.facade.AppointmentFacade;
 import edu.mum.ea.onlineDoctor.facade.DoctorFacade;
 import edu.mum.ea.onlineDoctor.facade.PatientFacade;
 import java.util.Date;
@@ -39,6 +41,8 @@ public class DatabaseInitializer implements DatabaseInitializerLocal {
     private DoctorFacade doctorFacade;
     @Inject
     private PatientFacade patientFacade;
+    @Inject
+    private AppointmentFacade appointmentFacade;
 
 //    @PersistenceContext(unitName = "edu.mum.ea_OnlineDoctorWebApp_war_1.0-SNAPSHOTPU")
     @PostConstruct
@@ -105,9 +109,20 @@ public class DatabaseInitializer implements DatabaseInitializerLocal {
 
         patient1.setAddress(patient1Address);
         
+        Appointment apt= new Appointment();
+        apt.setAppointmentDate(new Date());
+        apt.setDoctor(doc1);
+        apt.setPatientInAppointment(patient1);
+        
+               
+        
+        
+        
         adminFacade.create(admin1);
         doctorFacade.create(doc1);
         patientFacade.create(patient1);
+        
+        appointmentFacade.create(apt);
 
     }
 }

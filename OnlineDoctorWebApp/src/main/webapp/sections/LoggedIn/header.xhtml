@@ -6,8 +6,54 @@
     <head><title>IGNORED</title></head>
     <body>
         <ui:composition>
-            <img src="resources/images/banner.jpg" width="100%" />
-             <h:form class="logout"><h:commandButton value="Log out" action="#{loginBean.logout}"/></h:form>
+            <!--start header-->
+                <div class="header">
+                    <div class="top-header">
+                        <div class="wrap">
+                            <div class="top-header-left">
+                                <p>+800-020-12345</p>
+                            </div>
+                            <div class="right-left">
+                                <ul>
+                                    <li class="login"><a href="#">Login</a></li>
+                                    <li class="sign"><a href="../signup.faces">Sign up</a></li>
+                                </ul>
+                            </div>
+                            <div class="clear"> </div>
+                        </div>
+                    </div>
+                    <div class="main-header">
+                        <div class="wrap">
+                            <div class="logo">
+                                <a href="public/index.html"><img src="../resources/images/logo.png" title="logo" /></a>
+                            </div>
+                            <div class="social-links">
+                                <ul>
+                                    <li><a href="#"><img src="../resources/images/facebook.png" title="facebook" /></a></li>
+                                    <li><a href="#"><img src="../resources/images/twitter.png" title="twitter" /></a></li>
+                                    <li><a href="#"><img src="../resources/images/feed.png" title="Rss" /></a></li>
+                                    <div class="clear"> </div>
+                                </ul>
+                            </div>
+                            <div class="clear"> </div>
+                        </div>
+                    </div>
+                    <div class="clear"> </div>
+                    <div class="top-nav">
+                        <div class="wrap">
+                            <ul>
+                                <li class="active"><h:link outcome="/public/home.faces" value="Home"/></li>
+                                <li><h:link outcome="/public/about.faces" value="About" /></li>
+                                <li><h:link outcome="/public/services.faces" value="Services"/></li>
+                                <li><h:link outcome="/public/news.faces" value="News" /></li>
+                                <li><h:link outcome="/public/contact.faces" value="Contact" /></li>
+                                <div class="clear"> </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+        <!---End header-->
+            <!--             <h:form class="logout"><h:commandButton value="Log out" action=""/></h:form>-->
         </ui:composition>
     </body>
 </html>
