@@ -5,11 +5,8 @@
  */
 package edu.mum.ea.onlineDoctor.controller;
 
-import edu.mum.ea.onlineDoctor.entity.AppUser;
 import edu.mum.ea.onlineDoctor.entity.Appointment;
 import edu.mum.ea.onlineDoctor.entity.Patient;
-import edu.mum.ea.onlineDoctor.facade.AppointmentFacade;
-import edu.mum.ea.onlineDoctor.facade.PatientFacade;
 import edu.mum.ea.onlineDoctor.serviceI.AppointmentServiceBeanLocal;
 import edu.mum.ea.onlineDoctor.serviceI.PatientServiceBeanLocal;
 import java.io.Serializable;
@@ -17,10 +14,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ManagedBean;
-
-
 import javax.inject.Named;
 
 /**
@@ -58,15 +51,15 @@ public class TalkToDoctorBean implements Serializable{
         Long id=Long.valueOf(5);
         
         patient=patientService.getPatientById(id);//.find(id);//.find(id);//
-        System.out.println("Patient");
+        System.out.println("INFO TalkToDoctorBean - Patient found");
         //get available patient's appointemnts
      
       
         appointments=appointmentService.findPatientAppointments(patient);
-       
+       if(appointments.size()>0)System.out.println("INFO TalkToDoctorBean - Patient Appointment found");
         selectedAppointment = new Appointment();
         
-        
+        selectedAppointment =appointments.get(0) ;
         
     }
 

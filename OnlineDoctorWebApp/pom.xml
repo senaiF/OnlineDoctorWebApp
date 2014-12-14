@@ -28,6 +28,11 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>com.lapis.jsfexporter</groupId>
+            <artifactId>export-source-primefaces</artifactId>
+            <version>1.0.2.Final</version>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>7.0</version>

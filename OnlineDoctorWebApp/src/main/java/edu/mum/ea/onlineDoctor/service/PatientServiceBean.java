@@ -10,6 +10,8 @@ import edu.mum.ea.onlineDoctor.facade.PatientFacade;
 import edu.mum.ea.onlineDoctor.serviceI.PatientServiceBeanLocal;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 /**
  *
@@ -20,14 +22,19 @@ public class PatientServiceBean implements PatientServiceBeanLocal{
 
     @EJB
     private PatientFacade patientFacacde;
+    
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
 
     @Override
     public String signupPatient(Patient newPatient) {
-
+       try{
         patientFacacde.create(newPatient);
-        
+       } 
+       catch(Exception e){
+       return "Username already exist";
+       
+       }
         return "";
     }
 

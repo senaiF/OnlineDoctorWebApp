@@ -9,12 +9,17 @@ import edu.mum.ea.onlineDoctor.serviceI.DatabaseInitializerLocal;
 import edu.mum.ea.onlineDoctor.entity.Address;
 import edu.mum.ea.onlineDoctor.entity.Administrator;
 import edu.mum.ea.onlineDoctor.entity.AppRole;
+import edu.mum.ea.onlineDoctor.entity.Appointment;
+import edu.mum.ea.onlineDoctor.entity.Credential;
+//import edu.mum.ea.onlineDoctor.entity.Credential;
 import edu.mum.ea.onlineDoctor.entity.Doctor;
 import edu.mum.ea.onlineDoctor.entity.Gender;
 import edu.mum.ea.onlineDoctor.entity.Patient;
 import edu.mum.ea.onlineDoctor.facade.AddressFacade;
 import edu.mum.ea.onlineDoctor.facade.AdministratorFacade;
 import edu.mum.ea.onlineDoctor.facade.AppRoleFacade;
+import edu.mum.ea.onlineDoctor.facade.AppointmentFacade;
+import edu.mum.ea.onlineDoctor.facade.CredentialFacade;
 import edu.mum.ea.onlineDoctor.facade.DoctorFacade;
 import edu.mum.ea.onlineDoctor.facade.PatientFacade;
 import java.util.Date;
@@ -23,6 +28,7 @@ import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -44,10 +50,16 @@ public class DatabaseInitializer implements DatabaseInitializerLocal {
     private PatientFacade patientFacade;
     @Inject
     private AppRoleFacade appRoleFacade;
+    @Inject
+    private CredentialFacade credentailFacade;
+    @Inject
+    private AppointmentFacade appointmentFacade;
+  
+    
 
     
 
-//    @PersistenceContext(unitName = "edu.mum.ea_OnlineDoctorWebApp_war_1.0-SNAPSHOTPU")
+ @PersistenceContext(unitName = "edu.mum.ea_OnlineDoctorWebApp_war_1.0-SNAPSHOTPU")
     @PostConstruct
     public void init() {
         System.out.println("I am in Database Initializer Singletonnnnnnnnnnnnnnnnnnnn");
@@ -83,10 +95,17 @@ public class DatabaseInitializer implements DatabaseInitializerLocal {
         adminAddress.setCity("Fairfield");
         adminAddress.setState("Iowa");
         adminAddress.setZipCode("55257");
+      
+        Credential credential1=new Credential();
+        credential1.setUser(admin1);
+        credential1.setUserName("Admin");
+        credential1.setPassword("admin");
+        credential1.setRole(role1);
+        admin1.setCredential(credential1);
+//        credentailFacade.create(credential1);
 
         admin1.setAddress(adminAddress);
-//         role1.getUsers().add(admin1);
-//        admin1.setUserRole(role1);
+
         
         //Creating First Doctor
         Doctor doc1 = new Doctor();
@@ -107,7 +126,15 @@ public class DatabaseInitializer implements DatabaseInitializerLocal {
         doc1Address.setZipCode("55257");
 
         doc1.setAddress(doc1Address);
-//        doc1.setUserRole(role2);
+        
+        Credential credential2=new Credential();
+        credential2.setUser(doc1);
+        credential2.setUserName("Haile");
+        credential2.setPassword("haile");
+        credential2.setRole(role3);
+        doc1.setCredential(credential2);
+//        credentailFacade.create(credential2);
+
         
         //Creating First Patient 
         Patient patient1 = new Patient();
@@ -128,11 +155,26 @@ public class DatabaseInitializer implements DatabaseInitializerLocal {
         patient1Address.setZipCode("55257");
 
         patient1.setAddress(patient1Address);
-//        patient1.setUserRole(role3);
+        
+         Credential credential3=new Credential();
+        credential3.setUser(patient1);
+        credential3.setUserName("Stella");
+        credential3.setPassword("stella");
+        credential3.setRole(role2);
+        patient1.setCredential(credential3);
+//        credentailFacade.create(credential3);
+        
+        Appointment apt= new Appointment();
+        apt.setAppointmentDate(new Date());
+        apt.setDoctor(doc1);
+        apt.setPatientInAppointment(patient1);
+
         
         adminFacade.create(admin1);
         doctorFacade.create(doc1);
         patientFacade.create(patient1);
+        
+         appointmentFacade.create(apt);
 
     }
 }

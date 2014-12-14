@@ -57,7 +57,8 @@ public class TalkToPatientBean implements Serializable{
      
         appointments=appointmentService.findDoctorAppointments(doctor);
 
-        selectedAppointment = new Appointment();
+//        selectedAppointment = new Appointment();
+        selectedAppointment=appointments.get(0);
 
     }
 

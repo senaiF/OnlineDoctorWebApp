@@ -12,19 +12,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+import javax.persistence.UniqueConstraint;
 
 /**
  *
  * @author Stella
  */
 @Entity
+
 public class Credential implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-     @Column(nullable = false)
+     @Column(nullable = false, unique=true)
     private String userName;
     @Column(nullable = false)
     private String password;

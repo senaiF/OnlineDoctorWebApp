@@ -53,7 +53,7 @@ public class AdministratorViewBean {
         patient.setHomePhoneNo("623689999999");
         patient.setWorkPhoneNo("15634688888");
 //        patient.setUserName("dfdfd");
-//        patient.setPassword("fdff");
+//        patient.setUserPassword("fdff");
         //System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
         
         

@@ -29,23 +29,20 @@ public class ChatEndPoint {
     public void open(final Session session, @PathParam("room") final String room) {
         log.info("session openend and bound to room: " + room);
 
-        if (room.contains("Doctor Lewis Doctor")) {
-            System.out.println(" Doctor lewis is trying to open");
-            
-                for (Session s : session.getOpenSessions()) {
-                      
-                    String r= s.getUserProperties().get("room").toString();
-                    if (s.isOpen()
-                            && r.contains("Doctor Lewis")) {
-					//s.getBasicRemote().sendObject(chatMessage);
+//        if (room.contains("Doctor Lewis Doctor")) {
+//            System.out.println(" Doctor lewis is trying to open");
+        for (Session s : session.getOpenSessions()) {
 
-                        session.getUserProperties().put("room", s.getUserProperties().get("room"));
-                    }
-                }
-           
-        } else {
-            session.getUserProperties().put("room", room);
+            String r = s.getUserProperties().get("room").toString();
+            if (s.isOpen() && r.equals(room)) {
+                //s.getBasicRemote().sendObject(chatMessage);
+                //session is already existing 
+                // session.getUserProperties().put("room", s.getUserProperties().get("room"));
+                return;
+            }
         }
+        session.getUserProperties().put("room", room);
+
     }
 
     @OnMessage
