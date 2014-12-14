@@ -53,9 +53,7 @@ public class PatientBean implements Serializable {
     private AppRole role;
     private Credential credential;
 
-    public PatientBean() {
-
-    }
+    
 
     @PostConstruct
     public void init() {
