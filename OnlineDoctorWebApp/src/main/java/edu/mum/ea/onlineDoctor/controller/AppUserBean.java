@@ -5,7 +5,6 @@
  */
 package edu.mum.ea.onlineDoctor.controller;
 
-import edu.mum.ea.onlineDoctor.entity.Address;
 import edu.mum.ea.onlineDoctor.entity.AppUser;
 import edu.mum.ea.onlineDoctor.facade.SystemUserFacade;
 import javax.ejb.EJB;
@@ -20,12 +19,13 @@ import javax.faces.event.ComponentSystemEvent;
  */
 
 @Stateless
-public class SystemUserBean {
+public class AppUserBean {
 
     @EJB
     private SystemUserFacade systemUserFacade;
 
-    private AppUser appUser;
+    private AppUser appUser;    
+    private boolean loggedIn;
 
 //    private Address address;
 //
@@ -47,9 +47,7 @@ public class SystemUserBean {
         this.appUser = systemUser;
     }
 
-    private boolean loggedIn;
-
-    public SystemUserBean() {
+    public AppUserBean() {
 //        this.address=new Address();
     }
 

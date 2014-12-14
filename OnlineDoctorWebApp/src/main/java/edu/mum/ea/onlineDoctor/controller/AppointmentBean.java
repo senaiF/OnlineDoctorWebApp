@@ -8,13 +8,14 @@ package edu.mum.ea.onlineDoctor.controller;
 
 
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
+import java.io.Serializable;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.model.SelectItem;
 import javax.inject.Named;
 
@@ -23,8 +24,8 @@ import javax.inject.Named;
  * @author HailelulLakew
  */
 @Named("AppointmentBn")
-@SessionScoped
-public class AppointmentBean {
+@RequestScoped
+public class AppointmentBean implements Serializable{
 
     /**
      * Creates a new instance of AppointmentBean

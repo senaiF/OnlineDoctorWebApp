@@ -30,13 +30,13 @@ public class DoctorViewMedicalHistory {
         //PatientService.fillMedicalRecord(selectedPatient);
         selectedPatient = new Patient();
         selectedPatient.setFirstName("Senai");
-        
-        records=new ArrayList<>();
-        MedicalRecord mr=new MedicalRecord();
+
+        records = new ArrayList<>();
+        MedicalRecord mr = new MedicalRecord();
         mr.setRecordDate(new Date());
         mr.setRemarks("This is it ");
         mr.setSymptoms("This wer Symptoms.");
-        
+
         records.add(mr);
         selectedPatient.setMedicalRecord(records);
 

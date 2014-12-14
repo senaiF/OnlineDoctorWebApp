@@ -11,19 +11,19 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
+import javax.inject.Named;
 
 /**
  *
  * @author Fetiya
  */
-@ManagedBean
-@SessionScoped
+@Named
+@RequestScoped
 public class EditPatientBean implements Serializable {
 
     @EJB
@@ -31,11 +31,6 @@ public class EditPatientBean implements Serializable {
 
     private Patient patient = new Patient();//(Patient)patientFacacde.find(3);
     private String newPassword;
-
-    public EditPatientBean() {
-
-        //   Patient patient2 =;
-    }
 
     @PostConstruct
     private void init() {
@@ -46,7 +41,6 @@ public class EditPatientBean implements Serializable {
 
 //        System.out.println("Patient Name " + patient.getFirstName());
 //        System.out.println("patient address street" + patient.getAddress().getStreet());
-
     }
 
     public PatientFacade getPatientFacacde() {

@@ -14,51 +14,40 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ManagedBean;
-
 import javax.inject.Named;
 
 /**
  *
- * @author Fetiya
+ * @author Senai
  */
 @Named
 @RequestScoped
-public class TalkToPatientBean implements Serializable{
+public class TalkToPatientBean implements Serializable {
 
     private Long selectedAppointmentID;
-
     private List<Appointment> appointments;
-
     private Appointment selectedAppointment;
+    private Doctor doctor;
 
     @EJB
     private AppointmentServiceBeanLocal appointmentService;
-
     @EJB
     DoctorServiceBeanLocal doctorService;
-
-    private Doctor doctor;
-
-    public TalkToPatientBean() {
-    }
 
     @PostConstruct
     public void init() {
 
-      //getLoggedInUser 
+        //getLoggedInUser 
         //hard code: replace this with loggedin user later
         Long id = Long.valueOf(3);
 
         doctor = doctorService.getDoctorById(id);
 
         //get available doctor's schedules
-     
-        appointments=appointmentService.findDoctorAppointments(doctor);
+        appointments = appointmentService.findDoctorAppointments(doctor);
 
 //        selectedAppointment = new Appointment();
-        selectedAppointment=appointments.get(0);
+        selectedAppointment = appointments.get(0);
 
     }
 

@@ -6,9 +6,7 @@
 
 package edu.mum.ea.onlineDoctor.controller;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 /**
@@ -16,13 +14,9 @@ import javax.inject.Named;
  * @author HailelulLakew
  */
 @Named
-@SessionScoped
+@RequestScoped
 public class PatientEmergencyBean {
 
-    /**
-     * Creates a new instance of PatientEmergencyBean
-     */
-    public PatientEmergencyBean() {
-    }
+    
     
 }

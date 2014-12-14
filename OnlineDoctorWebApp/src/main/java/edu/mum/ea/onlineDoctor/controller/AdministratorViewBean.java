@@ -7,17 +7,14 @@
 package edu.mum.ea.onlineDoctor.controller;
 
 import edu.mum.ea.onlineDoctor.entity.Address;
-import edu.mum.ea.onlineDoctor.entity.Doctor;
 import edu.mum.ea.onlineDoctor.entity.Patient;
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 /**
@@ -25,15 +22,17 @@ import javax.inject.Named;
  * @author HailelulLakew
  */
 
-@ManagedBean(name="AdminBean")  
-@SessionScoped
-public class AdministratorViewBean {
+@Named("AdminBean")  
+@RequestScoped
+public class AdministratorViewBean implements Serializable{
 
     /**
      * Creates a new instance of ViewPatientAdministrator
      */
     private Patient patient;
     private Address address;
+    
+    
     @PostConstruct    
     public void init() { 
         setAddress(new Address());
@@ -55,15 +54,6 @@ public class AdministratorViewBean {
 //        patient.setUserName("dfdfd");
 //        patient.setUserPassword("fdff");
         //System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
         

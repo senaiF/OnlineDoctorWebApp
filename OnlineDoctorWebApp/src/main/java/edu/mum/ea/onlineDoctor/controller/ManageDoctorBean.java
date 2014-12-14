@@ -7,16 +7,13 @@ package edu.mum.ea.onlineDoctor.controller;
 
 import edu.mum.ea.onlineDoctor.entity.Doctor;
 import edu.mum.ea.onlineDoctor.facade.DoctorFacade;
-
-
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
@@ -26,8 +23,8 @@ import org.primefaces.event.SelectEvent;
  *
  * @author Brook B
  */
-@ManagedBean
-@SessionScoped
+@Named
+@RequestScoped
 public class ManageDoctorBean implements Serializable {
 
     @EJB
@@ -39,7 +36,7 @@ public class ManageDoctorBean implements Serializable {
     @PostConstruct
     public void init() {
         doctorList = doctorFacacde.findAll();
-        selectedoctor=new Doctor();
+        selectedoctor = new Doctor();
     }
 
     public void onDateSelect(SelectEvent event) {
@@ -47,14 +44,14 @@ public class ManageDoctorBean implements Serializable {
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
     }
-     
+
     public void click() {
         RequestContext requestContext = RequestContext.getCurrentInstance();
-         
+
         requestContext.update("form:display");
         requestContext.execute("PF('dlg').show()");
     }
-    
+
     public DoctorFacade getDoctorFacacde() {
         return doctorFacacde;
     }
@@ -78,10 +75,6 @@ public class ManageDoctorBean implements Serializable {
     public void setDoctorList(List<Doctor> doctorList) {
         this.doctorList = doctorList;
     }
-    
-   
-
-
 
     public String updateDoctor() {
 
@@ -89,12 +82,12 @@ public class ManageDoctorBean implements Serializable {
 
         return "doctorInfoSuccess";
     }
-    
-    public String addDoctor(){
+
+    public String addDoctor() {
         System.out.println("action methodddddddddddddddddddddddddd");
         doctorFacacde.create(selectedoctor);
-                System.out.println("enction methodddddddddddddddddddddddddd");
-                
-                return "index";
-    } 
+        System.out.println("enction methodddddddddddddddddddddddddd");
+
+        return "index";
+    }
 }

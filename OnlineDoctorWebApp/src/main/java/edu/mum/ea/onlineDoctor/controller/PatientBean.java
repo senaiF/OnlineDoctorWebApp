@@ -9,21 +9,13 @@ import edu.mum.ea.onlineDoctor.entity.Address;
 import edu.mum.ea.onlineDoctor.entity.AppRole;
 import edu.mum.ea.onlineDoctor.entity.Credential;
 import edu.mum.ea.onlineDoctor.entity.Patient;
-import edu.mum.ea.onlineDoctor.facade.AddressFacade;
 import edu.mum.ea.onlineDoctor.facade.AppRoleFacade;
 import edu.mum.ea.onlineDoctor.facade.CredentialFacade;
-import edu.mum.ea.onlineDoctor.facade.PatientFacade;
-import edu.mum.ea.onlineDoctor.service.PatientServiceBean;
 import edu.mum.ea.onlineDoctor.serviceI.PatientServiceBeanLocal;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.validator.ValidatorException;
 import javax.inject.Named;
 
 /**
@@ -39,7 +31,6 @@ public class PatientBean implements Serializable {
 //
 //    @EJB
 //    private PatientFacade patientFacacde;
-    
     @EJB
     private PatientServiceBeanLocal patientService;
     @EJB
@@ -53,16 +44,12 @@ public class PatientBean implements Serializable {
     private AppRole role;
     private Credential credential;
 
-    
-
     @PostConstruct
     public void init() {
         this.patient = new Patient();
         address = new Address();
-        this.role=roleFacade.find("Patient");
-        this.credential=new Credential();
-        
-        
+        this.role = roleFacade.find("Patient");
+        this.credential = new Credential();
 
     }
 //
@@ -122,12 +109,9 @@ public class PatientBean implements Serializable {
         this.roleFacade = roleFacade;
     }
 
-   
-    
     public String updatePatient() {
 
 //        patientFacacde.edit(patient);
-
         return "patientInfoSuccess";
     }
 
@@ -138,7 +122,7 @@ public class PatientBean implements Serializable {
     public void setAddress(Address address) {
         this.address = address;
     }
-    
+
 //     public void validate(FacesContext arg0, UIComponent arg1, Object brandName)
 //            throws ValidatorException {
 //        Credential credential1 = null;
@@ -156,22 +140,20 @@ public class PatientBean implements Serializable {
 //                msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 //                throw new ValidatorException(msg);
 //        }
-
 //    }
-
     public String addPatient() {
 //        System.out.println("pre save method");
 //        patientFacacde.create(patient);
-        
+
         patient.setCredential(credential);
         credential.setRole(role);
         patient.setAddress(address);
-        String sinupresualt=patientService.signupPatient(patient);
-       
+        String sinupresualt = patientService.signupPatient(patient);
+
 //        System.out.println("post save method");
-    if(sinupresualt!=null){
-        return "patientInfoSuccess";
-    }
- return "";
+        if (sinupresualt != null) {
+            return "patientInfoSuccess";
+        }
+        return "";
     }
 }

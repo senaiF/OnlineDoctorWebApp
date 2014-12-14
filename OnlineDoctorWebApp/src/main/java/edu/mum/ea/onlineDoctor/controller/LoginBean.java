@@ -8,12 +8,7 @@ package edu.mum.ea.onlineDoctor.controller;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -29,18 +24,17 @@ public class LoginBean implements Serializable {
      */
     public LoginBean() {
     }
-    
+
     public String logout() {
-        HttpSession session = (HttpSession)
-             FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         if (session != null) {
-           
+
             session.invalidate();
         }
         return "/index?faces-redirect=true";
-        
+
     }
-    
+
 //    private static Logger log = Logger.getLogger(LoginBean.class.getName());
 //
 //    public String logout() {
@@ -58,6 +52,4 @@ public class LoginBean implements Serializable {
 //
 //        return result;
 //    }
-    
-    
 }

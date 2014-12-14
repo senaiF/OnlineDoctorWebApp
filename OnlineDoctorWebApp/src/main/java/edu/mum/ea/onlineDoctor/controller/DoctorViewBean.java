@@ -6,12 +6,10 @@
 package edu.mum.ea.onlineDoctor.controller;
 
 import edu.mum.ea.onlineDoctor.entity.Address;
-import edu.mum.ea.onlineDoctor.entity.Appointment;
 import edu.mum.ea.onlineDoctor.entity.Doctor;
 import edu.mum.ea.onlineDoctor.entity.MedicalRecord;
 import edu.mum.ea.onlineDoctor.entity.Patient;
 import edu.mum.ea.onlineDoctor.facade.AppointmentFacade;
-import edu.mum.ea.onlineDoctor.facade.DoctorFacade;
 import edu.mum.ea.onlineDoctor.facade.PatientFacade;
 import java.io.Serializable;
 import java.text.DateFormat;
@@ -19,24 +17,19 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author HailelulLakew
  */
-
-@ManagedBean(name="DoctorView") 
-@SessionScoped
-public class DoctorViewBean implements Serializable{
+@Named("DoctorView")
+@RequestScoped
+public class DoctorViewBean implements Serializable {
 
     /**
      * Creates a new instance of viewPatientDoctor
@@ -44,55 +37,47 @@ public class DoctorViewBean implements Serializable{
     private List<Doctor> doctors;
     private ArrayList<Patient> patients;
     private List<MedicalRecord> medicalRecords;
+
     @EJB
     private PatientFacade patientFacade;
-    
     @EJB
     private AppointmentFacade appointmentFacade;
-    
 
-    public DoctorViewBean() {
-    }
-    
-    
-    @PostConstruct    
-    public void init() { 
+    @PostConstruct
+    public void init() {
         Address address = new Address();
         Doctor doctor = new Doctor();
-        
-        
-        MedicalRecord medicalRecord= new MedicalRecord();        
-        setMedicalRecords(new ArrayList<MedicalRecord>()); 
+
+        MedicalRecord medicalRecord = new MedicalRecord();
+        setMedicalRecords(new ArrayList<MedicalRecord>());
         doctors = new ArrayList<Doctor>();
-        
+
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
         Date today = Calendar.getInstance().getTime();
         medicalRecord.setRemarks("Need Attantion");
         medicalRecord.setRecordDate(today);
-        medicalRecord.setSymptoms("Head ache and eching");        
-      //  doctor.getMedicalRecords().add(medicalRecord);
+        medicalRecord.setSymptoms("Head ache and eching");
+        //  doctor.getMedicalRecords().add(medicalRecord);
         address.setCity("Fairfield");
-        
+
         address.setState("Iowa");
         //address.setStreetAddress("North 1000");        
-        doctor.setAddress(address);          
+        doctor.setAddress(address);
         doctor.setDateofBirth(today);
         doctor.setFirstName("David");
         doctor.setLastName("Johanson");
         doctor.setCellPhoneNo("45238903456");
-       // doctor.setCellPhoneNo("45238903");
+        // doctor.setCellPhoneNo("45238903");
         doctor.setHomePhoneNo("623689999");
         doctor.setWorkPhoneNo("156346888");
         doctors.add(doctor);
         System.out.println(doctors.size());
     }
-    
-    public void loadPatient(){
-         setPatients(patientFacade.loadPatient());
-       
+
+    public void loadPatient() {
+        setPatients(patientFacade.loadPatient());
+
     }
-    
-   
 
     /**
      * @return the doctors
@@ -122,8 +107,6 @@ public class DoctorViewBean implements Serializable{
         this.medicalRecords = medicalRecords;
     }
 
-   
-
     /**
      * @return the patientFacade
      */
@@ -152,8 +135,4 @@ public class DoctorViewBean implements Serializable{
         this.patients = patients;
     }
 
-    /**
-     * @return the medicalRecord
-     */
-   
 }

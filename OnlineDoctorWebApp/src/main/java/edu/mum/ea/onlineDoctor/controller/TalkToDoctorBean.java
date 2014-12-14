@@ -22,45 +22,37 @@ import javax.inject.Named;
  */
 @Named
 @RequestScoped
-public class TalkToDoctorBean implements Serializable{
+public class TalkToDoctorBean implements Serializable {
 
     private Long selectedAppointmentID;
-
     private List<Appointment> appointments;
-
     private Appointment selectedAppointment;
+    private Patient patient;
 
     @EJB
     private AppointmentServiceBeanLocal appointmentService;
-
-    @EJB 
+    @EJB
     private PatientServiceBeanLocal patientService;
-    
-
-    
-    private Patient patient;
-    
-    
-   
 
     @PostConstruct
     public void init() {
-        
+
       //getLoggedInUser 
-      //hard code: replace this with loggedin user later
-        Long id=Long.valueOf(5);
-        
-        patient=patientService.getPatientById(id);//.find(id);//.find(id);//
+        //hard code: replace this with loggedin user later
+        Long id = Long.valueOf(5);
+
+        patient = patientService.getPatientById(id);//.find(id);//.find(id);//
         System.out.println("INFO TalkToDoctorBean - Patient found");
         //get available patient's appointemnts
-     
-      
-        appointments=appointmentService.findPatientAppointments(patient);
-       if(appointments.size()>0)System.out.println("INFO TalkToDoctorBean - Patient Appointment found");
+
+        appointments = appointmentService.findPatientAppointments(patient);
+        if (appointments.size() > 0) {
+            System.out.println("INFO TalkToDoctorBean - Patient Appointment found");
+        }
         selectedAppointment = new Appointment();
-        
-        selectedAppointment =appointments.get(0) ;
-        
+
+        selectedAppointment = appointments.get(0);
+
     }
 
     public Long getSelectedAppointmentID() {
@@ -86,13 +78,12 @@ public class TalkToDoctorBean implements Serializable{
     public void setSelectedAppointment(Appointment selectedAppointment) {
         this.selectedAppointment = selectedAppointment;
     }
-    
-    public void findAppointmentByID()
-    {
-        
-      selectedAppointment= appointmentService.findAppointmentByID(selectedAppointmentID);
-        
-      //  selectedAppointment=appointmentService.find(selectedAppointmentID);
+
+    public void findAppointmentByID() {
+
+        selectedAppointment = appointmentService.findAppointmentByID(selectedAppointmentID);
+
+        //  selectedAppointment=appointmentService.find(selectedAppointmentID);
     }
 
     public Patient getPatient() {
@@ -102,9 +93,5 @@ public class TalkToDoctorBean implements Serializable{
     public void setPatient(Patient patient) {
         this.patient = patient;
     }
-
-  
-   
-    
 
 }
