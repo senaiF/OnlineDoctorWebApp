@@ -52,7 +52,7 @@ public class ScheduleView implements Serializable {
         
          for(Appointment app: appointments)
          {
-             eventModel.addEvent(new DefaultScheduleEvent("title",app.getAppointmentDate(),app.getAppointmentDate()));
+             eventModel.addEvent(new DefaultScheduleEvent(app.getTitle(),app.getStartTime(),app.getEndTime()));
          }
         lazyEventModel = new LazyScheduleModel() {
              
@@ -175,13 +175,15 @@ public class ScheduleView implements Serializable {
     }
      
     public void addEvent(ActionEvent actionEvent) {
+        //new DefaultScheduleEvent("Scheduled",new Date(),new Date());
         if(event.getId() == null)
             eventModel.addEvent(event);
         else
             eventModel.updateEvent(event);       
-        appointment.setAppointmentDate(event.getStartDate());
-      //  appointment.setStartTime(event.getStartDate());
-      //  appointment.setEndTime(event.getEndDate());
+        appointment.setAppointmentDate(new Date());
+         appointment.setTitle("Scheduled");
+        //appointment.setTitle(event.getTitle());
+        //appointment.setEndTime(event.getEndDate());
         event = new DefaultScheduleEvent();
         
         appointmentServiceBean.createAppointment(appointment);  
