@@ -124,7 +124,7 @@ public class EditPatientBean implements Serializable {
             String message;
             message = "Dear " + patient.getFirstName() + " , \n"
                     + "\nYour password has been changed successfully. \n"
-                    + "\nIf it wasn't you who made the change please contact us immediately \n"
+                    + "\n We are sending you this notice for your protection. \nIf it wasn't you who made the change please contact us immediately \n"
                     + " \n\n Regards,\n\n"
                     + "MUM Online Doctor Administrator";
             emailSender.sendEmail(message, "Password changed",
