@@ -39,7 +39,7 @@ public class TalkToDoctorBean implements Serializable {
 
       //getLoggedInUser 
         //hard code: replace this with loggedin user later
-        Long id = Long.valueOf(5);
+        Long id = Long.valueOf(7);
 
         patient = patientService.getPatientById(id);//.find(id);//.find(id);//
         System.out.println("INFO TalkToDoctorBean - Patient found");

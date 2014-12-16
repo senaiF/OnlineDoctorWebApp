@@ -47,11 +47,13 @@ public class ChatEndPoint {
 
     @OnMessage
     public void onMessage(final Session session, final ChatMessage chatMessage) {
+        System.out.println("Message arrived----------------------"+chatMessage.getMessage());
         String room = (String) session.getUserProperties().get("room");
         try {
             for (Session s : session.getOpenSessions()) {
-                if (s.isOpen()
-                        && room.equals(s.getUserProperties().get("room"))) {
+                System.out.println("Session");
+                if (s.isOpen() && room.equals(s.getUserProperties().get("room"))) {
+                    System.out.println("Message is getting sentttttttttttttttt");
                     s.getBasicRemote().sendObject(chatMessage);
                 }
             }

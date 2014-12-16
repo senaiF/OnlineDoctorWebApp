@@ -9,7 +9,7 @@
         <composite:attribute name="stopChatButtonValue" default="Stop"/>
         <composite:attribute name="sendButtonValue" default="Send"/>
         <composite:attribute name="chatSessionId" required="true"/>
-        <composite:attribute name="messageFrom" />
+        <composite:attribute name="messageFrom" required="true"/>
         <composite:attribute name="messageTo" required="true" />
 
     </composite:interface>
@@ -37,11 +37,14 @@
                 $chatWindow.append("\n" + $messageLine);
             }
             function sendMessage(evt) {
-                var msg = '{"message":"' + $message.val() + '", "sender":"'
-                        + '", "received":""}';
+                alert("sendMessage() called");
+                var messageArea= document.getElementById("message");
+                var msg = '{"message":"' + messageArea.value + '", "sender":"#{cc.attrs.messageFrom}", "received":""}';
                 alert(msg);
                 wsocket.send(msg);
-                $message.val('').focus();
+                messageArea.value="";
+                messageArea.focus();
+//                $message.val('message').focus();
             }
 
             function connectToChatserver() {

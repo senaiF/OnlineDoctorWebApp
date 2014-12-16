@@ -10,7 +10,7 @@
     </h:head>
     <h:body>
         
-        <util:chatArea sendButtonValue="Send Message" startChatButtonValue="Talk to Patient" stopChatButtonValue="Leave Patient" chatSessionId="#{talkToPatientBean.selectedAppointment.id}" messageTo="#{talkToPatientBean.selectedAppointment.patientInAppointment.firstName}" />
+        <util:chatArea sendButtonValue="Send Message" startChatButtonValue="Talk to Patient" stopChatButtonValue="Leave Patient" chatSessionId="#{talkToPatientBean.selectedAppointment.id}" messageTo="#{talkToPatientBean.selectedAppointment.patientInAppointment.firstName}" messageFrom="#{talkToPatientBean.selectedAppointment.doctor.firstName}" />
     </h:body>
 </html>
 
