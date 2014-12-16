@@ -7,11 +7,14 @@ package edu.mum.ea.onlineDoctor.controller;
 
 import edu.mum.ea.onlineDoctor.entity.Patient;
 import edu.mum.ea.onlineDoctor.facade.PatientFacade;
+import edu.mum.ea.onlineDoctor.service.EmailSender;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -23,7 +26,7 @@ import javax.inject.Named;
  * @author Fetiya
  */
 @Named
-@RequestScoped
+@SessionScoped
 public class EditPatientBean implements Serializable {
 
     @EJB
@@ -31,6 +34,13 @@ public class EditPatientBean implements Serializable {
 
     private Patient patient = new Patient();//(Patient)patientFacacde.find(3);
     private String newPassword;
+    private String newPasswordConfirm;
+    private String currentPassword;
+
+    public EditPatientBean() {
+
+        //   Patient patient2 =;
+    }
 
     @PostConstruct
     private void init() {
@@ -39,8 +49,6 @@ public class EditPatientBean implements Serializable {
         Long id = Long.valueOf(5);
         patient = patientFacacde.find(id);
 
-//        System.out.println("Patient Name " + patient.getFirstName());
-//        System.out.println("patient address street" + patient.getAddress().getStreet());
     }
 
     public PatientFacade getPatientFacacde() {
@@ -67,6 +75,22 @@ public class EditPatientBean implements Serializable {
         this.newPassword = newPassword;
     }
 
+    public String getNewPasswordConfirm() {
+        return newPasswordConfirm;
+    }
+
+    public void setNewPasswordConfirm(String newPasswordConfirm) {
+        this.newPasswordConfirm = newPasswordConfirm;
+    }
+
+    public String getCurrentPassword() {
+        return currentPassword;
+    }
+
+    public void setCurrentPassword(String currentPassword) {
+        this.currentPassword = currentPassword;
+    }
+
     public String updatePatient() {
 
         patientFacacde.edit(patient);
@@ -79,9 +103,36 @@ public class EditPatientBean implements Serializable {
         Date dateOfBirth = (Date) value;
 
         if (dateOfBirth.after(new Date())) {
-            throw new ValidatorException(
-                    new FacesMessage("Date of Birth should be in the past"));
 
+            FacesMessage msg
+                    = new FacesMessage(" Date of Birth should be in the past");
+            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+
+            throw new ValidatorException(msg);
+        }
+    }
+    @EJB
+    EmailSender emailSender;
+
+    public String changePassword() throws Exception {
+
+        if (currentPassword.equals(patient.getCredential().getPassword()) && newPassword.equals(newPasswordConfirm)) {
+            patient.getCredential().setPassword(newPassword);
+            patientFacacde.edit(patient);
+
+            FacesContext context = FacesContext.getCurrentInstance();
+            String message;
+            message = "Dear " + patient.getFirstName() + " , \n"
+                    + "\nYour password has been changed successfully. \n"
+                    + "\nIf it wasn't you who made the change please contact us immediately \n"
+                    + " \n\n Regards,\n\n"
+                    + "MUM Online Doctor Administrator";
+            emailSender.sendEmail(message, "Password changed",
+                    patient.getEmail(), "mumonlinedoctor@gmail.com");
+
+            return "patientInfoSuccess";
+        } else {
+            return "editPatientInfo";
         }
 
     }
