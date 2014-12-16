@@ -12,8 +12,8 @@ import edu.mum.ea.onlineDoctor.serviceI.DoctorServiceBeanLocal;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -29,23 +29,23 @@ public class TalkToPatientBean implements Serializable {
     private Appointment selectedAppointment;
     private Doctor doctor;
 
-    @EJB
+    @Inject
     private AppointmentServiceBeanLocal appointmentService;
-    @EJB
-    DoctorServiceBeanLocal doctorService;
+    @Inject
+    private DoctorServiceBeanLocal doctorService;
 
     @PostConstruct
     public void init() {
 
         //getLoggedInUser 
         //hard code: replace this with loggedin user later
-        Long id = Long.valueOf(3);
+        Long id = Long.valueOf(4);
 
         doctor = doctorService.getDoctorById(id);
 
         //get available doctor's schedules
         appointments = appointmentService.findDoctorAppointments(doctor);
-
+        System.out.println("Appointment " + appointments.size());
 //        selectedAppointment = new Appointment();
         selectedAppointment = appointments.get(0);
 

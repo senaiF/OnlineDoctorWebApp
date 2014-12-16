@@ -14,14 +14,23 @@
 
             //content begins here
             <ui:define name="content"> 
-                <form method="POST" action="j_security_check">  
-                    User Name: <input type="text" name="j_username" /><br />
-                    <!--<h:outputLabel for="password" value="Password:" />-->
-                    Password: <input type="password" name="j_password" /><br />
-
-                    <input type="submit" value="Login" />
-                    <input type="reset" value="Reset" />
-                </form>
+            <h:form>
+    <h:outputLabel for="usernameInput">
+        User Name
+    </h:outputLabel>
+         
+    <h:inputText id="usernameInput" value="#{loginBean.username}" 
+                 required="true" />
+    <br />
+    <h:outputLabel for="passwordInput">
+       Password
+    </h:outputLabel>
+    <h:inputSecret id="passwordInput" value="#{loginBean.password}" 
+                   required="true" />
+    <br />
+    <h:commandButton value="login"
+                     action="#{loginBean.login}" />
+</h:form>
 
             </ui:define>
             //content ends here

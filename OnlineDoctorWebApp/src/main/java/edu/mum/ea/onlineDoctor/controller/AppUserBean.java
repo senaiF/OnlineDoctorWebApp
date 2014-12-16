@@ -6,7 +6,7 @@
 package edu.mum.ea.onlineDoctor.controller;
 
 import edu.mum.ea.onlineDoctor.entity.AppUser;
-import edu.mum.ea.onlineDoctor.facade.SystemUserFacade;
+import edu.mum.ea.onlineDoctor.facade.AppUserFacade;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.faces.application.ConfigurableNavigationHandler;
@@ -22,7 +22,7 @@ import javax.faces.event.ComponentSystemEvent;
 public class AppUserBean {
 
     @EJB
-    private SystemUserFacade systemUserFacade;
+    private AppUserFacade appUserFacade;
 
     private AppUser appUser;    
     private boolean loggedIn;
@@ -31,12 +31,12 @@ public class AppUserBean {
 //
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-    public SystemUserFacade getSystemUserFacade() {
-        return systemUserFacade;
+    public AppUserFacade getSystemUserFacade() {
+        return appUserFacade;
     }
 
-    public void setSystemUserFacade(SystemUserFacade systemUserFacade) {
-        this.systemUserFacade = systemUserFacade;
+    public void setSystemUserFacade(AppUserFacade systemUserFacade) {
+        this.appUserFacade = systemUserFacade;
     }
 
     public AppUser getSystemUser() {
@@ -61,7 +61,7 @@ public class AppUserBean {
 
     public String login() {
 
-//        List<SystemUser> users = systemUserFacade.findAll();//factory.getUserDAO().findAll(0, 100)
+//        List<SystemUser> users = appUserFacade.findAll();//factory.getUserDAO().findAll(0, 100)
 //        for (SystemUser u : users) {
 //            if (user.getUserName().equals(u.getUserName())) {
 //                if (user.getPassword().equals(u.getPassword())) {

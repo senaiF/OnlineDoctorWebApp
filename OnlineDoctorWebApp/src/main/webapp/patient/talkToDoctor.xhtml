@@ -11,7 +11,7 @@
     </h:head>
 
     <h:body>
-        <util:chatArea sendButtonValue="Send Message" startChatButtonValue="Talk to Doctor" stopChatButtonValue="Leave Doctor" chatSessionId="#{talkToDoctorBean.selectedAppointment.id}" messageTo="#{talkToDoctorBean.selectedAppointment.doctor}" />
+        <util:chatArea sendButtonValue="Send Message" startChatButtonValue="Talk to Doctor" stopChatButtonValue="Leave Doctor" chatSessionId="#{talkToDoctorBean.selectedAppointment.id}" messageTo="#{talkToDoctorBean.selectedAppointment.doctor}" messageFrom="#{talkToPatientBean.selectedAppointment.patientInAppointment.firstName}"  />
   
     </h:body>
 </html>

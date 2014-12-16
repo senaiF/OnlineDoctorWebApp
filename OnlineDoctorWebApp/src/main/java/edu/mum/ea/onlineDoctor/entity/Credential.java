@@ -22,7 +22,10 @@ import javax.persistence.UniqueConstraint;
  * @author Stella
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "findAppUserByuserName", query = "select a from AppUser a where a.credential in (select c id from Credential c where c.userName= :uname)")
 
+})
 public class Credential implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
