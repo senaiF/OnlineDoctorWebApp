@@ -98,7 +98,7 @@ public class MakeAppointmentBn implements Serializable {
         cal.set(Calendar.MINUTE, Integer.parseInt(timeParts[1]));
         Date date = cal.getTime();
         long dateInLong = date.getTime();
-        appointment.setStartTime(dateInLong);
+        //appointment.setStartTime(dateInLong);
         appointment.setAppointmentDate(cal.getTime());
 //        appointmentService.setAppointment(appointment);
 //        appointmentService.addAppointment();

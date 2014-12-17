@@ -28,14 +28,33 @@ public class Appointment implements Serializable {
     @ManyToOne
     @JoinColumn(name = "Patient_ID")
     private Patient patientInAppointment;
+    private String title;
     @ManyToOne
     @JoinColumn(name = "Doctor_ID")
     private Doctor doctor;
     
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date appointmentDate;
-    private long startTime;
-    private long endTime;
+     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date startTime;
+      @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date endTime;
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
     
         
     public Long getId() {
@@ -62,22 +81,7 @@ public class Appointment implements Serializable {
         this.doctor = doctor;
     }
 
-    public long getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(long startTime) {
-        this.startTime = startTime;
-    }
-
-    public long getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(long endTime) {
-        this.endTime = endTime;
-    }
-
+   
     public void setId(Long id) {
         this.id = id;
     }
@@ -119,6 +123,20 @@ public class Appointment implements Serializable {
      */
     public void setAppointmentDate(Date appointmentDate) {
         this.appointmentDate = appointmentDate;
+    }
+
+    /**
+     * @return the title
+     */
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * @param title the title to set
+     */
+    public void setTitle(String title) {
+        this.title = title;
     }
     
 }
