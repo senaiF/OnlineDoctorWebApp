@@ -60,7 +60,7 @@
                     <h:message for="workPhoneNo" style="color: red"/>
                     <p:outputLabel value="#{msgs.username} "/>
                     <p:inplace>
-                        <p:inputText id="username" value="#{editPatientBean.patient.userName}">
+                        <p:inputText id="username" value="#{editPatientBean.patient.credential.userName}">
                         </p:inputText>
                     </p:inplace>
                     <p:message for="username" id="userNameError" style="color: red"/>
@@ -72,13 +72,16 @@
                         </p:inputText>
                     </p:inplace>
                     <p:message for="email" id="emailError" style="color: red"/>
-                    <p:commandButton value="#{msgs.btnSave}" action="#{editPatientBean.updatePatient()}"/>
-                    <p:commandButton value="#{msgs.btnCancel}" immediate="true"/>
+                    <p:commandButton value="#{msgs.btnSave}" action="#{editPatientBean.updateAccount()}"/>
+                    <p:commandButton value="Cancel" immediate="true"/>
+                     <h:commandButton value="clickMe" action="#{editPatientBean.clickMe}"/>
                 </h:panelGrid>
             </p:fieldset>
+        </h:form>
+        <h:form>
             <p:fieldset legend="Address" toggleable="true" toggleSpeed="500">
                 <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}" />
-                <h:panelGrid columns="3" cellpadding="2">
+                <h:panelGrid columns="3" cellpadding="6">
                     <p:outputLabel for="Street" value="Street:" /> 
                     <p:inplace>
                         <p:inputText id="Street" value="#{editPatientBean.patient.address.street}"/>
@@ -107,12 +110,13 @@
                         <p:inputText id="country" placeholder=" " value="#{editPatientBean.patient.address.country}"/>
                     </p:inplace>
                     <p:message for="country" />
-                    <p:commandButton value="#{msgs.btnSave}" action="#{editPatientBean.updatePatient()}"/>
-                    <p:commandButton value="#{msgs.btnCancel}" immediate="true"/>
+                    <p:commandButton value="Save}" action="#{editPatientBean.updatePatient()}"/>
+                    <p:commandButton value="Cancel}" immediate="true"/>
                 </h:panelGrid>
             </p:fieldset>
 
         </h:form>
+        
         <h:form>
             <p:fieldset legend="Change Password" toggleable="true" toggleSpeed="500">
                 <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}" />
@@ -136,4 +140,3 @@
         </h:form>
     </h:body>
 </html>
-

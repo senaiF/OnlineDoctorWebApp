@@ -5,6 +5,7 @@
  */
 package edu.mum.ea.onlineDoctor.controller;
 
+import edu.mum.ea.onlineDoctor.entity.AppUser;
 import edu.mum.ea.onlineDoctor.entity.Patient;
 import edu.mum.ea.onlineDoctor.facade.PatientFacade;
 import edu.mum.ea.onlineDoctor.service.EmailSender;
@@ -20,6 +21,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -46,8 +48,8 @@ public class EditPatientBean implements Serializable {
     private void init() {
 
         //for test user 1  , hard coded to be replaced by logged in user
-        Long id = Long.valueOf(5);
-        patient = patientFacacde.find(id);
+        //Long id = Long.valueOf(7);
+        patient =(Patient) getCurrentUser();
 
     }
 
@@ -98,6 +100,13 @@ public class EditPatientBean implements Serializable {
         return "patientInfoSuccess";
     }
 
+    
+     public String updateAccount() {
+
+        patientFacacde.edit(patient);
+
+        return "patientInfoSuccess";
+    }
     public void validateDateofBirth(FacesContext fc, UIComponent component, Object value) {
 
         Date dateOfBirth = (Date) value;
@@ -123,8 +132,8 @@ public class EditPatientBean implements Serializable {
             FacesContext context = FacesContext.getCurrentInstance();
             String message;
             message = "Dear " + patient.getFirstName() + " , \n"
-                    + "\nYour password has been changed successfully. \n"
-                    + "\n We are sending you this notice for your protection. \nIf it wasn't you who made the change please contact us immediately \n"
+                    + "\nYour password for Online Doctor website has been changed."
+                    + "We are sending you this notice for your protection. \nIf it wasn't you who made the change please contact us immediately \n"
                     + " \n\n Regards,\n\n"
                     + "MUM Online Doctor Administrator";
             emailSender.sendEmail(message, "Password changed",
@@ -142,5 +151,25 @@ public class EditPatientBean implements Serializable {
         this.patientFacacde.create(patient);
         System.out.println("post save method");
         return "index";
+    }
+    
+    public String clickMe()
+    {
+        System.out.println("Clck me clicked");
+        
+        return "home";
+    }
+    
+        private AppUser getCurrentUser() {
+
+        FacesContext context = FacesContext.getCurrentInstance();
+     
+        HttpSession session = (HttpSession)
+        FacesContext.getCurrentInstance().getCurrentInstance().getExternalContext().getSession(false);
+        AppUser patient=(AppUser)session.getAttribute("currentUser");
+        System.out.println("the loggedin user is :" +patient.getFirstName()+","+patient.getLastName());
+        return patient;
+       
+    
     }
 }
