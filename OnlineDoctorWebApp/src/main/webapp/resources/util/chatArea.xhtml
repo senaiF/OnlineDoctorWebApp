@@ -1,8 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:composite="http://java.sun.com/jsf/composite"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:composite="http://java.sun.com/jsf/composite"  >
 
     <composite:interface>
         <composite:attribute name="startChatButtonValue" default="Start" />
@@ -11,49 +9,45 @@
         <composite:attribute name="chatSessionId" required="true"/>
         <composite:attribute name="messageFrom" required="true"/>
         <composite:attribute name="messageTo" required="true" />
-
     </composite:interface>
 
     <composite:implementation>
-        <h:outputScript name="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/>
         <script>
             var wsocket;
             var serviceLocation = "ws://" + document.location.host + "/OnlineDoctorWebApp/chat/";
-            var $nickName;
-            var $message;
-            var $chatWindow;
             var $room = '';
             function onMessageReceived(evt) {
-                //var msg = eval('(' + evt.data + ')');
-                alert("Msg received")
                 var msg = JSON.parse(evt.data); // native API
-                alert("Msg parsed");
-                var $messageLine = '' + msg.received
-                        + ' _' + msg.sender
-                        + ' _' + msg.message
-                        + '';
-
-                alert(msg.received + " " + msg.sender + " " + msg.message);
-                $chatWindow.append("\n" + $messageLine);
+                var receivedTime = msg.received.substring(11, 16)
+                if ('#{cc.attrs.messageFrom}' === msg.sender) {
+                    var messageLine = '<tr class="sent"><td class="user label">' + msg.sender
+                            + '</td><td class="sentMessage">' + msg.message
+                            + '</td><td class="received">' + receivedTime
+                            + '</td></tr>';
+                } else {
+                    var messageLine = '<div class="received"><span class="user label">' + msg.sender
+                            + '</span><span class="receivedMessage">' + msg.message
+                            + '</span><span class="received">' + msg.received
+                            + '</span></div>';
+                }
+                var chatWindow = document.getElementById("responses");
+                chatWindow.innerHTML = chatWindow.innerHTML + messageLine;
+                var chatBox = document.getElementById("chatbox");
+                chatBox.scrollTop = chatWindow.scrollHeight;
             }
-            function sendMessage(evt) {
-                alert("sendMessage() called");
-                var messageArea= document.getElementById("message");
+
+            function sendMessage(evt) {               
+                var messageArea = document.getElementById("usermsg");
+                if (messageArea.value === "")
+                    return;
                 var msg = '{"message":"' + messageArea.value + '", "sender":"#{cc.attrs.messageFrom}", "received":""}';
-                alert(msg);
                 wsocket.send(msg);
-                messageArea.value="";
+                messageArea.value = "";
                 messageArea.focus();
-//                $message.val('message').focus();
             }
 
             function connectToChatserver() {
-//room = $('#nickname').val();
-                alert('connectToChatserver #{cc.attrs.chatSessionId}');
-                alert('#{cc.attrs.chatSessionId}');
-                alert('#{cc.attrs.chatSessionId}'+'eway');
                 $room = '#{cc.attrs.chatSessionId}';
-                alert("room"+ $room);
                 wsocket = new WebSocket(serviceLocation + $room);
                 wsocket.onmessage = onMessageReceived;
                 return true;
@@ -61,64 +55,113 @@
 
             function leaveRoom() {
                 wsocket.close();
-                $chatWindow.empty();
-                $('.chat-wrapper').hide();
-                $('.chat-signin').show();
-                $nickName.focus();
+                document.getElementById("usermsg").disabled = true;
+                document.getElementById("submitmsg").disabled = true;
+                document.getElementById("chat-start").style.visibility = "visible";
+                document.getElementById("leave-chat").style.visibility = "hidden";
             }
 
-            $(document).ready(function () {
-//    $nickName = $('#nickname');
-                $message = $('#message');
-                $chatWindow = $('#response');
-                $('.chat-wrapper').hide();
-//    $nickName.focus();
-//    $('#chat-start').click(function (evt) {
-//        evt.preventDefault();
-//        alert("clicked");
-//        connectToChatserver();
-//        $('.chat-wrapper h2').text('Chat  @ channel' );
-//        $('.chat-signin').hide();
-//        $('.chat-wrapper').show();
-//        $message.focus();
-//    });
-//    $('#do-chat').submit(function (evt) {
-//        evt.preventDefault();
-//        sendMessage()
-//    });
-//
-//    $('#leave-room').click(function () {
-//        leaveRoom();
-//    });
-            });
-
             function startChat(evt) {
-                alert("startChat - clicked");
-//        evt.preventDefault();
-
                 if (connectToChatserver()) {
-                    document.getElementById("leave-chat").setAttribute("hidden", false);
-                    alert(document.getElementById("leave-chat").getAttribute("hidden"));
-                    $('.chat-wrapper h2').text('chatting with '+'#{cc.attrs.messageTo}');
-                    $('#chat-start').hide();
-                    $('#leave-chat').show();
-                    $message.focus();
+                    document.getElementById("chat-start").style.visibility = "hidden";
+                    document.getElementById("leave-chat").style.visibility = "visible";
+                    document.getElementById("usermsg").disabled = false;
+                    document.getElementById("submitmsg").disabled = false;
+                    document.getElementById("usermsg").focus();
                 } else {
                     alert("couldn't connect to OnlineDoctor Chat server!");
                 }
             }
         </script>
+        <style type="text/css">
+            body {
+                font:12px arial;
+                color: #222;
+                text-align:center;
+                padding:35px; }
 
-        <input type="button" id="chat-start"  value="#{cc.attrs.startChatButtonValue}" onclick="startChat();"  />
-        <input type="button" id="leave-chat" value="#{cc.attrs.stopChatButtonValue}" onclick="stopChat()" />
-        <div id="chat-wrapper"  class="chat-wrapper">
-            <h2 >please #{cc.attrs.chatSessionId} #{cc.attrs.messageTo} #{cc.attrs.stopChatButtonValue}</h2>
-            <!--<h:form id="do-chat" class="form-chat">-->
-            <textarea id="response" rows="20" cols="100" readonly="true"/><br /><br />
-            <textarea id="message" rows="3" cols="95"/>
-            <input type="button" value="#{cc.attrs.sendButtonValue}" onclick="sendMessage()"/>
+            form, p, span {
+                margin:0;
+                padding:0; }
 
-            <!--</h:form>-->
+            input { font:12px arial; }
+            a {
+                color:#0000FF;
+                text-decoration:none; }
+            a:hover { text-decoration:underline; }
+            #chat-wrapper, #loginform {
+                margin:0 auto;
+                padding-bottom:25px;
+                background:#EBF4FB;
+                width:574px;
+                border:1px solid #ACD8F0; }
+            #loginform { padding-top:18px; }
+            #loginform p { margin: 5px; }
+            #chatbox {                
+                text-align:left;
+                margin:0 auto;
+                margin-bottom:25px;
+                padding:10px;
+                background:#fff;
+                height:270px;
+                width:500px;
+                border:1px solid #ACD8F0;
+                overflow:auto; }
+            #usermsg {
+                width:465px;
+                border:1px solid #ACD8F0; }
+            #submit { width: 60px; }
+            .error { color: #ff0000; }
+            #menu { padding:12.5px 25px 12.5px 25px; }
+            .welcome { float:left; }
+            .logout { float:right; }
+            .msgln { margin:0 0 2px 0; }
+            #leave-chat{
+                visibility: hidden;
+            }
+            tr.received{
+                width: 490px;
+                color:royalblue;
+                vertical-align: top;
+                text-align: justify;
+            }
+            tr.sent{
+                width: 490px;
+                color: green;
+                vertical-align: top;
+                text-align: justify;
+            }
+            td.sentMessage{                
+                width: 450px;
+            }
+            td.receivedMessage{
+                width: 450px;
+            }
+            .received{
+                width: 15px;
+            }
+
+        </style>
+
+        <div id="chat-wrapper">
+            <div id="menu">
+                <p class="welcome">chatting with #{cc.attrs.messageTo} <b></b></p>
+                <p class="logout"> 
+                    <input type="button" id="chat-start"  value="#{cc.attrs.startChatButtonValue}" onclick="startChat();"  /> 
+                    <input type="button" id="leave-chat" value="#{cc.attrs.stopChatButtonValue}" onclick="leaveRoom()" />
+                </p>    
+                <div style="clear:both"></div>
+            </div>
+
+            <div id="chatbox"  >
+                <table id="responses">
+
+                </table> 
+            </div>
+
+            <input name="usermsg" type="text" id="usermsg" size="63" disabled="true"/>
+            <input name="submitmsg" type="button"  id="submitmsg" value="#{cc.attrs.sendButtonValue}"  onclick="sendMessage()"  disabled="true" />
+
         </div>
     </composite:implementation>
 </html>

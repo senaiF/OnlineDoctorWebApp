@@ -31,16 +31,17 @@ public class ChatEndPoint {
 
 //        if (room.contains("Doctor Lewis Doctor")) {
 //            System.out.println(" Doctor lewis is trying to open");
-        for (Session s : session.getOpenSessions()) {
-
-            String r = s.getUserProperties().get("room").toString();
-            if (s.isOpen() && r.equals(room)) {
-                //s.getBasicRemote().sendObject(chatMessage);
-                //session is already existing 
-                // session.getUserProperties().put("room", s.getUserProperties().get("room"));
-                return;
-            }
-        }
+//        for (Session s : session.getOpenSessions()) {
+//
+//            String r = s.getUserProperties().get("room").toString();
+//            if (s.isOpen() && r.equals(room)) {
+//                //s.getBasicRemote().sendObject(chatMessage);
+//                //session is already existing 
+////                 session.getUserProperties().put("room", s.getUserProperties().get("room"));
+//                return;
+//            }
+//        }
+        
         session.getUserProperties().put("room", room);
 
     }
