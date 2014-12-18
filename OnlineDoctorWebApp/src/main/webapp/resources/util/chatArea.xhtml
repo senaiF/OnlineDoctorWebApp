@@ -25,10 +25,12 @@
                             + '</td><td class="received">' + receivedTime
                             + '</td></tr>';
                 } else {
-                    var messageLine = '<div class="received"><span class="user label">' + msg.sender
-                            + '</span><span class="receivedMessage">' + msg.message
-                            + '</span><span class="received">' + msg.received
-                            + '</span></div>';
+
+                    var messageLine = '<tr class="received"><td class="user label">' + msg.sender
+                            + '</td><td class="receivedMessage">' + msg.message
+                            + '</td><td class="received">' + receivedTime
+                            + '</td></tr>';
+
                 }
                 var chatWindow = document.getElementById("responses");
                 chatWindow.innerHTML = chatWindow.innerHTML + messageLine;

@@ -42,6 +42,22 @@ public class ChatEndPoint {
     public void open(final Session session, @PathParam("room") final String room) {
         log.info("session openend and bound to room: " + room);
 
+//        try {=
+//            for (Session s : session.getOpenSessions()) {
+//                if (s.isOpen() && room.equals(s.getUserProperties().get("room"))) {
+//                    System.out.println("Message is getting sentttttttttttttttt");
+////                    String messages = (String) OngoingchatMessages.get(room);
+////                    if (messages != null) {
+////                        for (String message : (messages).split("\n")) {
+////                            s.getBasicRemote().sendObject(message);
+////                        }
+////                        
+////                    }
+//                }
+//            }
+//        } catch (IOException | EncodeException e) {
+//            log.log(Level.WARNING, "onMessage failed", e);
+//        }
 //        try {
 //            for (Session s : session.getOpenSessions()) {
 //                if (s.isOpen() && room.equals(s.getUserProperties().get("room"))) {
@@ -58,7 +74,6 @@ public class ChatEndPoint {
 //        } catch (IOException | EncodeException e) {
 //            log.log(Level.WARNING, "onMessage failed", e);
 //        }
-        
         session.getUserProperties().put("room", room);
         OngoingchatMessages.put(room, "");
     }
@@ -78,7 +93,11 @@ public class ChatEndPoint {
                     OngoingchatMessages.replace(room, messages + "\n" + encoder.encode(chatMessage));
                     return;
                 }
+
             }
+            String messages = (String) OngoingchatMessages.get(room);
+            OngoingchatMessages.replace(room, messages + "\n" + encoder.encode(chatMessage));
+
         } catch (IOException | EncodeException e) {
             log.log(Level.WARNING, "onMessage failed", e);
         }
@@ -92,17 +111,18 @@ public class ChatEndPoint {
         try {
             for (Session s : session.getOpenSessions()) {
                 System.out.println("Close Session");
-                if (s.isOpen() && room.equals(s.getUserProperties().get("room"))) {
+                if (s.isOpen() && room.equals(s.getUserProperties().get("room")) && s != session) {
                     System.out.println("session notified to be closed");
                     s.close(closeReason);
-                    return;
                 }
             }
+
+        } catch (Exception e) {
+            log.log(Level.WARNING, "closing the other side session failed");
+        } finally {
             //persisting the chat messages
             medicalRecordingService.recordchatMessages(appointmentService.findAppointmentByID(Long.parseLong(room)), (String) OngoingchatMessages.get(Long.parseLong(room)));
 
-        } catch (IOException e) {
-            log.log(Level.WARNING, "closing the other side session failed");
         }
     }
 }
