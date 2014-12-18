@@ -19,13 +19,15 @@
                         <div class="services1">
                             <h4>Our services</h4>
                             <div class="content-top-grids services-grids">
+                                
+                                <h:form id="talkToDoctor" rendered="#{(!request.isUserInRole('Admin')) and (!request.isUserInRole('Doctor'))}">
                                 <div class="content-top-grid services-grid1">
                                     <div class="content-top-grid-header">
                                         <div class="content-top-grid-pic">
-                                            <a href="#"><img src="../resources/images/timer.png" title="image-name" /></a>
+                                            <a href="#"><img src="../resources/images/d1.jpg" title="image-name" /></a>
                                         </div>
                                         <div class="content-top-grid-title">
-                                            <h3>24x7 Servives</h3>
+                                            <h3><h:link value="Talk To Doctor " outcome="/patient/talkToDoctor" /></h3>
                                         </div>
                                         <div class="clear"> </div>
                                     </div>
@@ -33,13 +35,16 @@
                                     <a class="grid-button" href="#">Read More</a>
                                     <div class="clear"> </div>
                                 </div>
+                                    </h:form>
+                                
+                                <h:form id="scheduleAppointment" rendered="#{(!request.isUserInRole('Admin')) and (!request.isUserInRole('Doctor'))}">
                                 <div class="content-top-grid services-grid1">
                                     <div class="content-top-grid-header">
                                         <div class="content-top-grid-pic">
-                                            <a href="#"><img src="../resources/images/tool.png" title="image-name" /></a>
+                                            <a href="#"><img src="../resources/images/appointment.jpg" title="image-name" height="70"/></a>
                                         </div>
                                         <div class="content-top-grid-title">
-                                            <h3>CARE ADVICES</h3>
+                                            <h3><h:link value="Schedule Appointment " outcome="/patient/talkToDoctor" /></h3>
                                         </div>
                                         <div class="clear"> </div>
                                     </div>
@@ -47,13 +52,36 @@
                                     <a class="grid-button" href="#">Read More</a>
                                     <div class="clear"> </div>
                                 </div>
+                                    </h:form>
+                                
+                                <h:form id="emergency" rendered="#{(!request.isUserInRole('Admin')) and (!request.isUserInRole('Doctor'))}">
+                                    <div class="content-top-grid services-grid1">
+                                        <div class="content-top-grid-header">
+                                            <div class="content-top-grid-pic">
+                                                <a href="#"><img src="../resources/images/inject.png" title="image-name" /></a>
+                                            </div>
+                                            <div class="content-top-grid-title">
+                                            <h3><h:link value="Emergency " outcome="/patient/emergency" /></h3>
+                                            </div>
+                                            <div class="clear"> </div>
+                                        </div>
+                                        <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
+                                        <a class="grid-button" href="#">Read More</a>
+                                        <div class="clear"> </div>
+                                    </div>
+                                </h:form>
+
+
+
+
+                                <h:form id="updateInfo" rendered="#{(!request.isUserInRole('Admin')) and (!request.isUserInRole('Doctor'))}">
                                 <div class="content-top-grid services-grid1">
                                     <div class="content-top-grid-header">
                                         <div class="content-top-grid-pic">
-                                            <a href="#"><img src="../resources/images/inject.png" title="image-name" /></a>
+                                            <a href="#"><img src="../resources/images/update.jpg" title="image-name" /></a>
                                         </div>
                                         <div class="content-top-grid-title">
-                                            <h3><a href="../patient/emergency.faces">EMERGENCY</a></h3>
+                                            <h3><h:link value="Update Information" outcome="/patient/viewPatientInfo"/></h3>
                                         </div>
                                         <div class="clear"> </div>
                                     </div>
@@ -61,90 +89,127 @@
                                     <a class="grid-button" href="#">Read More</a>
                                     <div class="clear"> </div>
                                 </div>
-                                <div class="content-top-grid services-grid1">
-                                    <div class="content-top-grid-header">
-                                        <div class="content-top-grid-pic">
-                                            <a href="#"><img src="../resources/images/timer.png" title="image-name" /></a>
+                                    </h:form>
+
+                                <h:form id="manage" rendered="#{request.isUserInRole('Admin')}">
+                                    <div class="content-top-grid services-grid1">
+                                        <div class="content-top-grid-header">
+                                            <div class="content-top-grid-pic">
+                                                <a href="#"><img src="../resources/images/d4.jpg" title="image-name" /></a>
+                                            </div>
+                                            <div class="content-top-grid-title">
+                                             <h3><h:link value="Manage Doctors" outcome="/admin/managedoctor" /></h3>
+                                            </div>
+                                            <div class="clear"> </div>
                                         </div>
-                                        <div class="content-top-grid-title">
-                                            <h3>24x7 Servives</h3>
-                                        </div>
+                                        <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
+                                        <a class="grid-button" href="#">Read More</a>
                                         <div class="clear"> </div>
                                     </div>
-                                    <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
-                                    <a class="grid-button" href="#">Read More</a>
-                                    <div class="clear"> </div>
-                                </div>
-                                <div class="content-top-grid services-grid1">
-                                    <div class="content-top-grid-header">
-                                        <div class="content-top-grid-pic">
-                                            <a href="#"><img src="../resources/images/tool.png" title="image-name" /></a>
+                                </h:form>
+                                
+                                 <h:form id="manageMedicines" rendered="#{request.isUserInRole('Admin')}">
+                                    <div class="content-top-grid services-grid1">
+                                        <div class="content-top-grid-header">
+                                            <div class="content-top-grid-pic">
+                                                <a href="#"><img src="../resources/images/tool.png" title="image-name" /></a>
+                                            </div>
+                                            <div class="content-top-grid-title">
+                                             <h3><h:link value="Manage Medicines " outcome="/admin/administratorView" /></h3>
+                                            </div>
+                                            <div class="clear"> </div>
                                         </div>
-                                        <div class="content-top-grid-title">
-                                            <h3>CARE ADVICES</h3>
-                                        </div>
+                                        <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
+                                        <a class="grid-button" href="#">Read More</a>
                                         <div class="clear"> </div>
                                     </div>
-                                    <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
-                                    <a class="grid-button" href="#">Read More</a>
-                                    <div class="clear"> </div>
-                                </div>
-                                <div class="content-top-grid services-grid1">
-                                    <div class="content-top-grid-header">
-                                        <div class="content-top-grid-pic">
-                                            <a href="#"><img src="../resources/images/inject.png" title="image-name" /></a>
+                                </h:form>
+                                
+                                <h:form id="viewPatientInfo" rendered="#{request.isUserInRole('Admin')}">
+                                    <div class="content-top-grid services-grid1">
+                                        <div class="content-top-grid-header">
+                                            <div class="content-top-grid-pic">
+                                                <a href="#"><img src="../resources/images/update.jpg" title="image-name" /></a>
+                                            </div>
+                                            <div class="content-top-grid-title">
+                                             <h3><h:link value="View Patient Information" outcome="/admin/administratorView" /></h3>
+                                            </div>
+                                            <div class="clear"> </div>
                                         </div>
-                                        <div class="content-top-grid-title">
-                                            <h3>EMERGENCY</h3>
-                                        </div>
+                                        <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
+                                        <a class="grid-button" href="#">Read More</a>
                                         <div class="clear"> </div>
                                     </div>
-                                    <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
-                                    <a class="grid-button" href="#">Read More</a>
-                                    <div class="clear"> </div>
-                                </div>
-                                <div class="content-top-grid services-grid1">
-                                    <div class="content-top-grid-header">
-                                        <div class="content-top-grid-pic">
-                                            <a href="#"><img src="../resources/images/timer.png" title="image-name" /></a>
+                                </h:form>
+                                
+                                <h:form id="viewAppointmentsDoc" rendered="#{request.isUserInRole('Doctor')and (!request.isUserInRole('Admin'))}">
+                                    <div class="content-top-grid services-grid1">
+                                        <div class="content-top-grid-header">
+                                            <div class="content-top-grid-pic">
+                                                <a href="#"><img src="../resources/images/appointment.jpg" title="image-name" /></a>
+                                            </div>
+                                            <div class="content-top-grid-title">
+                                             <h3><h:link value="View Appointments" outcome="/doctor/doctorView" /></h3>
+                                            </div>
+                                            <div class="clear"> </div>
                                         </div>
-                                        <div class="content-top-grid-title">
-                                            <h3>24x7 Servives</h3>
-                                        </div>
+                                        <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
+                                        <a class="grid-button" href="#">Read More</a>
                                         <div class="clear"> </div>
                                     </div>
-                                    <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
-                                    <a class="grid-button" href="#">Read More</a>
-                                    <div class="clear"> </div>
-                                </div>
-                                <div class="content-top-grid services-grid1">
-                                    <div class="content-top-grid-header">
-                                        <div class="content-top-grid-pic">
-                                            <a href="#"><img src="../resources/images/tool.png" title="image-name" /></a>
+                                </h:form>
+                                
+                                <h:form id="talkToPatient" rendered="#{request.isUserInRole('Doctor')and (!request.isUserInRole('Admin'))}">
+                                    <div class="content-top-grid services-grid1">
+                                        <div class="content-top-grid-header">
+                                            <div class="content-top-grid-pic">
+                                                <a href="#"><img src="../resources/images/timer.png" title="image-name" /></a>
+                                            </div>
+                                            <div class="content-top-grid-title">
+                                             <h3><h:link value="Talk To Patient" outcome="/doctor/talkToPatient" /></h3>
+                                            </div>
+                                            <div class="clear"> </div>
                                         </div>
-                                        <div class="content-top-grid-title">
-                                            <h3>CARE ADVICES</h3>
-                                        </div>
+                                        <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
+                                        <a class="grid-button" href="#">Read More</a>
                                         <div class="clear"> </div>
                                     </div>
-                                    <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
-                                    <a class="grid-button" href="#">Read More</a>
-                                    <div class="clear"> </div>
-                                </div>
-                                <div class="content-top-grid services-grid1">
-                                    <div class="content-top-grid-header">
-                                        <div class="content-top-grid-pic">
-                                            <a href="#"><img src="../resources/images/inject.png" title="image-name" /></a>
+                                </h:form>
+                                
+                                <h:form id="createMedicalRec" rendered="#{request.isUserInRole('Doctor')and (!request.isUserInRole('Admin'))}">
+                                    <div class="content-top-grid services-grid1">
+                                        <div class="content-top-grid-header">
+                                            <div class="content-top-grid-pic">
+                                                <a href="#"><img src="../resources/images/medical.png" title="image-name" /></a>
+                                            </div>
+                                            <div class="content-top-grid-title">
+                                             <h3><h:link value="Create Medical Record" outcome="/doctor/doctorPatientMedicalHistory" /></h3>
+                                            </div>
+                                            <div class="clear"> </div>
                                         </div>
-                                        <div class="content-top-grid-title">
-                                            <h3>EMERGENCY</h3>
-                                        </div>
+                                        <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
+                                        <a class="grid-button" href="#">Read More</a>
                                         <div class="clear"> </div>
                                     </div>
-                                    <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
-                                    <a class="grid-button" href="#">Read More</a>
-                                    <div class="clear"> </div>
-                                </div>
+                                </h:form>
+                                
+                                 <h:form id="createPrescription" rendered="#{request.isUserInRole('Doctor')and (!request.isUserInRole('Admin'))}">
+                                    <div class="content-top-grid services-grid1">
+                                        <div class="content-top-grid-header">
+                                            <div class="content-top-grid-pic">
+                                                <a href="#"><img src="../resources/images/prescription.jpg" title="image-name" /></a>
+                                            </div>
+                                            <div class="content-top-grid-title">
+                                             <h3><h:link value="Create Prescription" outcome="/doctor/doctorView" /></h3>
+                                            </div>
+                                            <div class="clear"> </div>
+                                        </div>
+                                        <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
+                                        <a class="grid-button" href="#">Read More</a>
+                                        <div class="clear"> </div>
+                                    </div>
+                                </h:form>
+                                
                                 <div class="clear"> </div>
                             </div>
                         </div>
