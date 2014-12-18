@@ -42,22 +42,22 @@ public class ChatEndPoint {
     public void open(final Session session, @PathParam("room") final String room) {
         log.info("session openend and bound to room: " + room);
 
-        try {
-            for (Session s : session.getOpenSessions()) {
-                if (s.isOpen() && room.equals(s.getUserProperties().get("room"))) {
-                    System.out.println("Message is getting sentttttttttttttttt");
-                    String messages = (String) OngoingchatMessages.get(room);
-                    if (messages != null) {
-                        for (String message : (messages).split("\n")) {
-                            s.getBasicRemote().sendObject(message);
-                        }
-                        return;
-                    }
-                }
-            }
-        } catch (IOException | EncodeException e) {
-            log.log(Level.WARNING, "onMessage failed", e);
-        }
+//        try {
+//            for (Session s : session.getOpenSessions()) {
+//                if (s.isOpen() && room.equals(s.getUserProperties().get("room"))) {
+//                    System.out.println("Message is getting sentttttttttttttttt");
+////                    String messages = (String) OngoingchatMessages.get(room);
+////                    if (messages != null) {
+////                        for (String message : (messages).split("\n")) {
+////                            s.getBasicRemote().sendObject(message);
+////                        }
+////                        return;
+////                    }
+//                }
+//            }
+//        } catch (IOException | EncodeException e) {
+//            log.log(Level.WARNING, "onMessage failed", e);
+//        }
         
         session.getUserProperties().put("room", room);
         OngoingchatMessages.put(room, "");
