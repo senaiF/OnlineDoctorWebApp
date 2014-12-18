@@ -91,6 +91,7 @@ public class LoginBean implements Serializable{
         return null;
     }
   public String login () {
+      System.out.println("in login bean11111111111111111111");
     FacesContext context = FacesContext.getCurrentInstance();
     HttpServletRequest request = (HttpServletRequest) 
         context.getExternalContext().getRequest();
@@ -108,9 +109,9 @@ public class LoginBean implements Serializable{
     } catch (ServletException e) {
    
       context.addMessage(null, new FacesMessage("Login failed."));
-      return "error";
+      return "error?faces-redirect=true";
     }
-    return "home";
+    return "/home?faces-redirect=true";
   }
 
 
@@ -141,7 +142,7 @@ public class LoginBean implements Serializable{
 
             session.invalidate();
         }
-        return "/index?faces-redirect=true";
+        return "/home?faces-redirect=true";
 
     }
 }
