@@ -142,9 +142,13 @@ body{
 /*----start-content-----*/
 .contentdiv{
    
-    
+   vertical-align:central;
     min-height: 200pt;
     margin-left:auto;
+}
+.logindiv{
+        margin-left:250pt;
+        margin-top: 20pt;
 }
 .content-top-grid{
 	float:left;
