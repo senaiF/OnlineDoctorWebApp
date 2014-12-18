@@ -3,11 +3,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>#{msgs.title}</title>
     </h:head>
     <h:body>
+         <ui:composition template="/templates/masterLayout.xhtml">
+           <ui:define name="content"> 
         <h:form  id="editPatientInfo">
             <p:fieldset legend="Personal Information" toggleable="true" toggleSpeed="500">
                 <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}" />
@@ -110,8 +113,8 @@
                         <p:inputText id="country" placeholder=" " value="#{editPatientBean.patient.address.country}"/>
                     </p:inplace>
                     <p:message for="country" />
-                    <p:commandButton value="Save}" action="#{editPatientBean.updatePatient()}"/>
-                    <p:commandButton value="Cancel}" immediate="true"/>
+                    <p:commandButton value="Save" action="#{editPatientBean.updatePatient()}"/>
+                    <p:commandButton value="Cancel" immediate="true"/>
                 </h:panelGrid>
             </p:fieldset>
 
@@ -138,5 +141,9 @@
                 </h:panelGrid>
             </p:fieldset>
         </h:form>
+                </ui:define>
+            
+
+        </ui:composition>
     </h:body>
 </html>
