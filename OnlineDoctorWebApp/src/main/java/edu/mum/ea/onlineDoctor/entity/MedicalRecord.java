@@ -14,9 +14,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,6 +26,9 @@ import javax.persistence.TemporalType;
  * @author Fetiya
  */
 @Entity
+@NamedQueries({
+	 @NamedQuery(name="findMedicalRecordByAppointment", query="select m from MedicalRecord m where m.appointment=:appointmentId")
+	 })
 public class MedicalRecord implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -34,6 +37,8 @@ public class MedicalRecord implements Serializable {
     
     @Temporal(TemporalType.DATE)
     private Date recordDate;
+    
+    private String chatMessages;
     
     private String symptoms;
     
@@ -51,6 +56,8 @@ public class MedicalRecord implements Serializable {
     @JoinColumn(name="doctor_id")
     private Doctor doctor;
     
+    @OneToOne
+    private Appointment appointment;
     
     public Long getId() {
         return id;
@@ -62,6 +69,14 @@ public class MedicalRecord implements Serializable {
 
     public Date getRecordDate() {
         return recordDate;
+    }
+
+    public String getChatMessages() {
+        return chatMessages;
+    }
+
+    public void setChatMessages(String chatMessages) {
+        this.chatMessages = chatMessages;
     }
 
     public void setRecordDate(Date recordDate) {
@@ -106,6 +121,14 @@ public class MedicalRecord implements Serializable {
 
     public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
+    }
+
+    public Appointment getAppointment() {
+        return appointment;
+    }
+
+    public void setAppointment(Appointment appointment) {
+        this.appointment = appointment;
     }
     
     

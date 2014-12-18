@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package edu.mum.ea.onlineDoctor.facade;
 
 import edu.mum.ea.onlineDoctor.entity.MedicalRecord;
@@ -17,6 +16,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class MedicalRecordFacade extends AbstractFacade<MedicalRecord> {
+
     @PersistenceContext(unitName = "edu.mum.ea_OnlineDoctorWebApp_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
@@ -28,5 +28,12 @@ public class MedicalRecordFacade extends AbstractFacade<MedicalRecord> {
     public MedicalRecordFacade() {
         super(MedicalRecord.class);
     }
-    
+
+    public MedicalRecord getMedicalRecordByAppointmentId(Long AppointmentId) {
+        try {
+            return (MedicalRecord) em.createNamedQuery("findMedicalRecordByAppointment").setParameter("appointmentId", AppointmentId).getResultList().get(0);
+        } catch (IndexOutOfBoundsException e) {
+            return null;
+        }
+    }
 }
