@@ -14,6 +14,7 @@ import edu.mum.ea.onlineDoctor.entity.Credential;
 //import edu.mum.ea.onlineDoctor.entity.Credential;
 import edu.mum.ea.onlineDoctor.entity.Doctor;
 import edu.mum.ea.onlineDoctor.entity.Gender;
+import edu.mum.ea.onlineDoctor.entity.Medicine;
 import edu.mum.ea.onlineDoctor.entity.Patient;
 import edu.mum.ea.onlineDoctor.facade.AddressFacade;
 import edu.mum.ea.onlineDoctor.facade.AdministratorFacade;
@@ -21,6 +22,7 @@ import edu.mum.ea.onlineDoctor.facade.AppRoleFacade;
 import edu.mum.ea.onlineDoctor.facade.AppointmentFacade;
 import edu.mum.ea.onlineDoctor.facade.CredentialFacade;
 import edu.mum.ea.onlineDoctor.facade.DoctorFacade;
+import edu.mum.ea.onlineDoctor.facade.MedicineFacade;
 import edu.mum.ea.onlineDoctor.facade.PatientFacade;
 import java.util.Date;
 import javax.annotation.PostConstruct;
@@ -54,6 +56,10 @@ public class DatabaseInitializer implements DatabaseInitializerLocal {
     private CredentialFacade credentailFacade;
     @Inject
     private AppointmentFacade appointmentFacade;
+    
+    @Inject
+
+    private MedicineFacade medicineFacade;
   
     
 
@@ -77,6 +83,9 @@ public class DatabaseInitializer implements DatabaseInitializerLocal {
         AppRole role3=new AppRole();
         role3.setName("Doctor");
         appRoleFacade.create(role3);
+        
+        Medicine medicine= new Medicine();
+        medicine.setBiologicalName("Mebendazol");
         
         //Creating First Administrator
         Administrator admin1 = new Administrator();
@@ -175,6 +184,7 @@ public class DatabaseInitializer implements DatabaseInitializerLocal {
         patientFacade.create(patient1);
         
          appointmentFacade.create(apt);
+         medicineFacade.create(medicine);
 
     }
 }
