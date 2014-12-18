@@ -39,6 +39,19 @@ public class Appointment implements Serializable {
     private Date startTime;
       @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date endTime;
+      
+    private Boolean active;
+
+    public Boolean isActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+   
+    
 
     public Date getStartTime() {
         return startTime;

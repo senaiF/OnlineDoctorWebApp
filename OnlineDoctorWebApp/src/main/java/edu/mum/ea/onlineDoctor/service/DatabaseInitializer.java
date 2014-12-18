@@ -169,7 +169,8 @@ public class DatabaseInitializer implements DatabaseInitializerLocal {
         apt.setDoctor(doc1);
         apt.setPatientInAppointment(patient1);
 
-        
+        apt.setEndTime(new Date());
+        apt.setStartTime(new Date());
         adminFacade.create(admin1);
         doctorFacade.create(doc1);
         patientFacade.create(patient1);
