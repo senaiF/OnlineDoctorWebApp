@@ -5,6 +5,10 @@
  */
 package edu.mum.ea.onlineDoctor.serviceI;
 
+import edu.mum.ea.onlineDoctor.entity.Appointment;
+import edu.mum.ea.onlineDoctor.entity.MedicalRecord;
+import edu.mum.ea.onlineDoctor.entity.Patient;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +17,11 @@ import javax.ejb.Local;
  */
 @Local
 public interface MedicalRecordingServiceBeanLocal {
+    
+    public boolean addMedicalRecord(MedicalRecord newMedicalRecord);
+    
+    public List<MedicalRecord> getAllMedicalRecords(Patient patient);
+    
+    public boolean recordchatMessages(Appointment appointment,String sessionchatMessages);
     
 }

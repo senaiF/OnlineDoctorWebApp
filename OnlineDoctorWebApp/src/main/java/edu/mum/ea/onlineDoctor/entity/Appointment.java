@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
 /**
@@ -25,6 +26,7 @@ public class Appointment implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
     @ManyToOne
     @JoinColumn(name = "Patient_ID")
     private Patient patientInAppointment;
@@ -32,13 +34,28 @@ public class Appointment implements Serializable {
     @ManyToOne
     @JoinColumn(name = "Doctor_ID")
     private Doctor doctor;
-    
+    @OneToOne(mappedBy="appointment")
+    private MedicalRecord medicalRecord;
+        
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date appointmentDate;
      @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date startTime;
       @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date endTime;
+      
+    private Boolean active;
+
+    public Boolean isActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+   
+    
 
     public Date getStartTime() {
         return startTime;
@@ -56,7 +73,7 @@ public class Appointment implements Serializable {
         this.endTime = endTime;
     }
     
-        
+
     public Long getId() {
         return id;
     }
