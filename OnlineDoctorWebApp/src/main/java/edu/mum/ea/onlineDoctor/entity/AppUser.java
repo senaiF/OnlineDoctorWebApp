@@ -148,9 +148,12 @@ public class AppUser implements Serializable {
         return email;
     }
 
-    public void setEmail(String eMail) {
+    public void setEmail(String email) {
         this.email = email;
     }
+
+  
+
 
     public Credential getCredential() {
         return credential;

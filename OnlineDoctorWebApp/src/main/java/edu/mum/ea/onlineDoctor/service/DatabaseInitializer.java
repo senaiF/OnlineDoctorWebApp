@@ -143,11 +143,12 @@ public class DatabaseInitializer implements DatabaseInitializerLocal {
         patient1.setFirstName("Stella");
         patient1.setLastName("Berhe");
         patient1.setGender(Gender.FEMALE);
+        patient1.setEmail("fetiyab@gmail.com");
         patient1.setDateofBirth(new Date());
         patient1.setCellPhoneNo("001(641)483-8745");
         patient1.setHomePhoneNo("001(641)546-2345");
         patient1.setWorkPhoneNo("001(641)893-2345");
-        patient1.setEmail("fetiyab@gmail.com");
+        
         Address patient1Address = new Address();
         patient1Address.setStreet("4th street");
         patient1Address.setCity("Fairfield");
