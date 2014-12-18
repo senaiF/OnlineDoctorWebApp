@@ -108,8 +108,8 @@ public class LoginBean implements Serializable{
         AppUser user=(AppUser)session.getAttribute("currentUser");
     } catch (ServletException e) {
    
-      context.addMessage(null, new FacesMessage("Login failed."));
-      return "error?faces-redirect=true";
+      context.addMessage(null, new FacesMessage("Invalid Username or Password."));
+      return "login";
     }
     return "/home?faces-redirect=true";
   }

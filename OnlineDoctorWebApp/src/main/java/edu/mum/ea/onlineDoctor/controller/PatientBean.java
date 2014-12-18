@@ -11,6 +11,7 @@ import edu.mum.ea.onlineDoctor.entity.Credential;
 import edu.mum.ea.onlineDoctor.entity.Patient;
 import edu.mum.ea.onlineDoctor.facade.AppRoleFacade;
 import edu.mum.ea.onlineDoctor.facade.CredentialFacade;
+import edu.mum.ea.onlineDoctor.service.EmailSender;
 import edu.mum.ea.onlineDoctor.serviceI.PatientServiceBeanLocal;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
@@ -37,6 +38,8 @@ public class PatientBean implements Serializable {
     private AppRoleFacade roleFacade;
     @EJB
     private CredentialFacade credentialfacade;
+    @EJB
+    EmailSender emailSender;
 
     private Address address;
 
@@ -141,19 +144,21 @@ public class PatientBean implements Serializable {
 //                throw new ValidatorException(msg);
 //        }
 //    }
-    public String addPatient() {
-//        System.out.println("pre save method");
-//        patientFacacde.create(patient);
+    public String addPatient() throws Exception {
 
         patient.setCredential(credential);
         credential.setRole(role);
         patient.setAddress(address);
-        String sinupresualt = patientService.signupPatient(patient);
-
-//        System.out.println("post save method");
-        if (sinupresualt != null) {
-            return "patientInfoSuccess";
-        }
-        return "";
+        //String sinupresualt = patientService.signupPatient(patient);
+        String message;
+            message = "Dear " + patient.getFirstName() + " , \n"
+                    + "\nYour have successfully Sign up in Online Doctor website."
+                    + "We are sending you this notice for your protection. \nIf it wasn't you who made the change please contact us immediately \n"
+                    + " \n\n Regards,\n\n"
+                    + "MUM Online Doctor Administrator";
+            emailSender.sendEmail(message, "welcome to Online Doctor website.",
+                    patient.getEmail(), "mumonlinedoctor@gmail.com");
+            System.out.println("this is patient's email" + patient.getEmail());
+        return "login";
     }
 }

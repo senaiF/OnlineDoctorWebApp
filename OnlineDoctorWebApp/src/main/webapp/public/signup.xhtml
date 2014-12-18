@@ -15,23 +15,14 @@
             
             
             //content begins here
-            <ui:define name="content"> 
+            <ui:define name="content">
+                <div class="signupdiv">
 
 
                 <h:form>
+                    <p:fieldset>
                     <h:panelGrid columns="3" cellpadding="3">
 
-<!--                        <p:outputLabel for="userName" value=" User Name:" />
-                        <p:inputText id="userName" value="# {patientBean.patient.userName}"/>
-                        <p:message for="userName" />-->
-
-<!--                        <p:outputLabel for="password" value=" Password:" />
-                        <p:password id="password" value="# {patientBean.patient.userPassword}" feedback="false" match="pwd2" label="Password 1" required="true"/>
-                        <p:message for="password" />
-
-                        <p:outputLabel for="pwd2" value="Confirm Password"/>
-                        <p:password id="pwd2" value="# {patientBean.patient.userPassword}" feedback="false" label="Password 2" required="true"/>
-                        <p:message for="pwd2" />-->
 
                         <p:outputLabel for="firstName" value= "First Name :" />
                         <p:inputText id="firstName" value="#{patientBean.patient.firstName}"></p:inputText>
@@ -63,6 +54,19 @@
                         <p:outputLabel for="workPhone" value=" Work Phone" />
                         <p:inputText id="workPhone" value="#{patientBean.patient.workPhoneNo}" />
                         <p:message for="workPhone" />
+                        
+                        
+                        <p:outputLabel for="userName" value=" User Name:" />
+                        <p:inputText id="userName" value="#{patientBean.credential.userName}"/>
+                        <p:message for="userName" />
+
+                        <p:outputLabel for="password" value=" Password:" />
+                        <p:password id="password" value="#{patientBean.credential.password}" feedback="false" match="pwd2" label="Password 1" required="true"/>
+                        <p:message for="password" />
+
+                        <p:outputLabel for="pwd2" value="Confirm Password"/>
+                        <p:password id="pwd2" value="#{patientBean.credential.password}" feedback="false" label="Password 2" required="true"/>
+                        <p:message for="pwd2" />
 
                         <p:outputLabel for="email" value=" Email:" />
                         <p:inputText id="email" value="#{patientBean.patient.email}" />
@@ -98,10 +102,12 @@
                         </h:panelGrid>
                     </p:fieldset>
 
-                    <h:commandButton action="#{patientBean.addPatient()}" value="add Patient" />
+                    <h:commandButton action="#{patientBean.addPatient}" value="Sign Up" />
                     <p:spacer></p:spacer>
                     <p:spacer></p:spacer>
+                    </p:fieldset>
                 </h:form>
+                    </div>
             </ui:define>
             //content ends here
 

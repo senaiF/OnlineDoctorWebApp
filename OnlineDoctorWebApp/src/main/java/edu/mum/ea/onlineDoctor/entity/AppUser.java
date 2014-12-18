@@ -58,7 +58,7 @@ public class AppUser implements Serializable {
     private Date dateofBirth;
 
     private String cellPhoneNo;
-    private String homePhoneNo;
+   private String homePhoneNo;
     private String workPhoneNo;
 
     private String email;
@@ -128,14 +128,6 @@ public class AppUser implements Serializable {
         this.cellPhoneNo = cellPhoneNo;
     }
 
-    public String getHomePhoneNo() {
-        return homePhoneNo;
-    }
-
-    public void setHomePhoneNo(String homePhoneNo) {
-        this.homePhoneNo = homePhoneNo;
-    }
-
     public String getWorkPhoneNo() {
         return workPhoneNo;
     }
@@ -144,14 +136,29 @@ public class AppUser implements Serializable {
         this.workPhoneNo = workPhoneNo;
     }
 
+    public String getHomePhoneNo() {
+        return homePhoneNo;
+    }
+
+    public void setHomePhoneNo(String homePhoneNo) {
+        this.homePhoneNo = homePhoneNo;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+    
+
+   
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String eMail) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
+ 
     public Credential getCredential() {
         return credential;
     }
