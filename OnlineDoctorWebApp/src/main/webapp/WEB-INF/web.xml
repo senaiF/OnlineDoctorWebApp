@@ -31,7 +31,6 @@
         <auth-constraint>
             <description/>
             <role-name>Admin</role-name>
-            <role-name>Doctor</role-name>
         </auth-constraint>
     </security-constraint>
     <security-constraint>
@@ -62,8 +61,8 @@
         <auth-method>FORM</auth-method>
         <realm-name>onlinedoctor-realm</realm-name>
         <form-login-config>
-            <form-login-page>/login.faces</form-login-page>
-            <form-error-page>/error.faces</form-error-page>
+            <form-login-page>/public/login.faces</form-login-page>
+            <form-error-page>/public/error.faces</form-error-page>
         </form-login-config>
     </login-config>
     <security-role>
@@ -80,6 +79,11 @@
     </security-role>
     <error-page>
         <error-code>403</error-code>
-        <location>/accessError.xhtml</location>
+        <location>/public/accessError.xhtml</location>
     </error-page>
+    <context-param>
+        <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+        <param-value>client</param-value>
+    </context-param>
+
 </web-app>
