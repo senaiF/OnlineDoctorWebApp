@@ -11,7 +11,7 @@
     </h:head>
     <h:body>
 
-         <ui:composition template="/templates/masterLayout.xhtml">
+         <ui:composition template="/templates/masterLayout_1.xhtml">
 
             
             
@@ -24,9 +24,8 @@
             <p:dataTable id="medicines" var="medicinee" value="#{manageMedicineBean.medicineList}"
                          rowKey="#{medicinee.id}"
                          selection="#{manageMedicineBean.medicine}" selectionMode="single" editable="true" style="width: 500px;font-size: 12px;margin-bottom:20px">
-                <p:ajax event="rowEdit" listener="#{manageDoctorBean.onRowEdit}" update=":formm:msgss" />
-                <p:ajax event="rowEditCancel" listener="#{manageDoctorBean.onRowCancel}" update=":formm:msgss" />
-
+                <p:ajax event="rowEdit" listener="#{manageMedicineBean.onRowEdit}" update=":formm:msgss" />
+                <p:ajax event="rowEditCancel" listener="#{manageMedicineBean.onRowCancel}" update=":formm:msgss" />
 
 
                 <f:facet name="header">

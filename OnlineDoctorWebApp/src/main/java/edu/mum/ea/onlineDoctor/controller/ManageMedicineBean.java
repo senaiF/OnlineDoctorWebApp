@@ -107,7 +107,7 @@ import org.primefaces.event.RowEditEvent;
         medicineSerivice.addMedicine(medicine);
                        
                 
-       FacesMessage msg = new FacesMessage("success", "doctor row Edited");//((Doctor) event.getObject()).getId());
+       FacesMessage msg = new FacesMessage("success", "Medicine Added");
        FacesContext.getCurrentInstance().addMessage(null, msg);
    
     } 
@@ -117,11 +117,10 @@ import org.primefaces.event.RowEditEvent;
      
      public void onRowEdit(RowEditEvent event) {
                 
-        //edittedMedicine = ((Medicine)event.getObject());
-        medicineFacade.edit(medicine);
-        //medicineSerivice.updateMedicine(medicine);
         
-        FacesMessage msg = new FacesMessage("success", "doctor row Edited");//((Doctor) event.getObject()).getId());
+        medicineFacade.edit(medicine);
+                
+       FacesMessage msg = new FacesMessage("success", "Medicine row Edited");
        FacesContext.getCurrentInstance().addMessage(null, msg);
    
     }
