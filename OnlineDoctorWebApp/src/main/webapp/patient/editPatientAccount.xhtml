@@ -11,10 +11,11 @@
     <h:body>
         <ui:composition template="/templates/masterLayout.xhtml">
             <ui:define name="content"> 
+                <div class="signupdiv">
                 <h:form  id="editPatientInfo">
                     <p:fieldset legend="Personal Information" toggleable="true" toggleSpeed="500">
                         <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}" />
-                        <h:panelGrid columns="3" cellpadding="6">
+                        <h:panelGrid columns="3" cellpadding="9">
                             <p:commandLink value="Change my password" action="changePassword"/> 
                             <p:commandLink value="Edit my address" action="editAddress"/>
                             <br/>
@@ -84,7 +85,7 @@
                 <h:form>
                     <p:fieldset legend="Address" toggleable="true" toggleSpeed="500">
                         <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}" />
-                        <h:panelGrid columns="3" cellpadding="6">
+                        <h:panelGrid columns="3" cellpadding="9">
                             <p:outputLabel for="Street" value="Street:" /> 
                             <p:inplace>
                                 <p:inputText id="Street" value="#{editPatientBean.patient.address.street}"/>
@@ -123,7 +124,7 @@
                 <h:form>
                     <p:fieldset legend="Change Password" toggleable="true" toggleSpeed="500">
                         <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}" />
-                        <h:panelGrid columns="3" cellpadding="6">
+                        <h:panelGrid columns="3" cellpadding="9">
                             <p:outputLabel value="Current Password: "/>
                             <p:password id="password" value="#{editPatientBean.currentPassword}" required="true" >
                             </p:password>
@@ -141,6 +142,9 @@
                         </h:panelGrid>
                     </p:fieldset>
                 </h:form>
+                    
+                    
+                </div>
             </ui:define>
 
 
