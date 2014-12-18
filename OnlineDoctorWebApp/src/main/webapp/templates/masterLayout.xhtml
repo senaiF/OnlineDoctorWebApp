@@ -15,7 +15,7 @@
         <script src="../resources/js/responsiveslides.min.js"></script>
         <script>
             // You can also use "$(window).load(function() {"
-            $(function () {
+            $(function() {
                 // Slideshow 1
                 $("#slider1").responsiveSlides({
                     maxwidth: 2500,
@@ -35,15 +35,15 @@
             <ui:include src="/sections/public/header.xhtml"/>
         </ui:insert>
         <div class="contentdiv">
-        <ui:insert name="content">
-            <ui:insert name="sidebarLeft">
-                <ui:include src="/sections/public/sidebarLeft.xhtml"/>
-            </ui:insert>
-            <ui:insert name="mainContent">
+            <ui:insert name="content">
+                <ui:insert name="sidebarLeft">
+                    <ui:include src="/sections/public/sidebarLeft.xhtml"/>
+                </ui:insert>
+                <ui:insert name="mainContent">
 
+                </ui:insert>
             </ui:insert>
-        </ui:insert>
-            </div>
+        </div>
 
         <ui:insert name="footer">
             <ui:include src="/sections/public/footer.xhtml"/>
